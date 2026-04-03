@@ -1,17 +1,773 @@
 ---
+import '../styles/global.css';
 
+const services = [
+  {
+    title: "Web Development",
+    description:
+      "High-performance web applications crafted for speed and conversion. SPAs, SSR, SaaS platforms, dashboards, and e-commerce — built on modern foundations.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    tags: ["React", "Next.js", "TypeScript", "Node.js"],
+    tagColor: { text: "rgba(34,197,94,0.85)", border: "rgba(34,197,94,0.18)", bg: "rgba(34,197,94,0.06)" },
+    iconBg: "rgba(34,197,94,0.12)",
+    iconBorder: "rgba(34,197,94,0.22)",
+    hoverGrad: "rgba(34,197,94,0.05)",
+  },
+  {
+    title: "Mobile Apps",
+    description:
+      "Native-quality iOS and Android applications. Cross-platform efficiency without compromising on performance, smooth animations, or platform-specific feel.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`,
+    tags: ["React Native", "Expo", "iOS", "Android"],
+    tagColor: { text: "rgba(16,185,129,0.85)", border: "rgba(16,185,129,0.18)", bg: "rgba(16,185,129,0.06)" },
+    iconBg: "rgba(16,185,129,0.12)",
+    iconBorder: "rgba(16,185,129,0.22)",
+    hoverGrad: "rgba(16,185,129,0.05)",
+  },
+  {
+    title: "Desktop Apps",
+    description:
+      "Fast, lightweight desktop software for Windows, macOS, and Linux. Web tech with native system integration — installer-ready, offline-capable, pixel-perfect.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    tags: ["Tauri", "Electron", "Windows", "macOS", "Linux"],
+    tagColor: { text: "rgba(132,204,22,0.85)", border: "rgba(132,204,22,0.18)", bg: "rgba(132,204,22,0.06)" },
+    iconBg: "rgba(132,204,22,0.12)",
+    iconBorder: "rgba(132,204,22,0.22)",
+    hoverGrad: "rgba(132,204,22,0.05)",
+  },
+];
+
+const bentoFeatures = [
+  {
+    label: "DELIVERY",
+    title: "On-time, every time",
+    desc: "Agile sprints, clear milestones, zero surprises. We ship when we promise.",
+    span: "md:col-span-2",
+    accent: "#10b981",
+    accentBg: "rgba(16,185,129,0.15)",
+    accentBorder: "rgba(16,185,129,0.25)",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+  {
+    label: "TRANSPARENCY",
+    title: "Radical openness",
+    desc: "Full visibility into every sprint. Real-time updates, open comms, shared metrics.",
+    span: "md:col-span-2",
+    accent: "#84cc16",
+    accentBg: "rgba(132,204,22,0.15)",
+    accentBorder: "rgba(132,204,22,0.25)",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  },
+  {
+    label: "EXPERTISE",
+    title: "Full-stack fluency",
+    desc: "Frontend to database, DevOps to design systems — we handle the complete stack so you don't juggle vendors.",
+    span: "md:col-span-3",
+    accent: "#22c55e",
+    accentBg: "rgba(34,197,94,0.15)",
+    accentBorder: "rgba(34,197,94,0.25)",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  },
+  {
+    label: "SCALABILITY",
+    title: "Built for growth",
+    desc: "From 100 to 1,000,000 users without painful rewrites. Architectured to scale from day one.",
+    span: "md:col-span-3",
+    accent: "#6ee7b7",
+    accentBg: "rgba(110,231,183,0.15)",
+    accentBorder: "rgba(110,231,183,0.25)",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  },
+];
+
+const techStack = [
+  { name: "React",         color: "#61dafb" },
+  { name: "Next.js",       color: "#e8efe9" },
+  { name: "TypeScript",    color: "#3b82f6" },
+  { name: "Node.js",       color: "#4ade80" },
+  { name: "React Native",  color: "#61dafb" },
+  { name: "Expo",          color: "#e8efe9" },
+  { name: "Tauri",         color: "#84cc16" },
+  { name: "Electron",      color: "#6ee7b7" },
+  { name: "PostgreSQL",    color: "#60a5fa" },
+  { name: "Prisma",        color: "#e8efe9" },
+  { name: "Docker",        color: "#38bdf8" },
+  { name: "Tailwind CSS",  color: "#22d3ee" },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Discovery",
+    desc: "We deep-dive into your requirements, users, and goals to define a clear scope and success criteria.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  },
+  {
+    step: "02",
+    title: "Design",
+    desc: "Wireframes, prototypes, and high-fidelity designs reviewed and approved before a line of code is written.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+  },
+  {
+    step: "03",
+    title: "Development",
+    desc: "Agile sprints with weekly demos. Full visibility into progress — no black boxes, no surprises.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  },
+  {
+    step: "04",
+    title: "Launch & Support",
+    desc: "Smooth deployment, monitoring, and continued support. We stay with you well beyond go-live.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+  },
+];
 ---
-
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Stay True builds exceptional web, mobile, and desktop software for startups and enterprises." />
+  <title>Stay True — Digital Development Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-canvas text-fg font-sans antialiased overflow-x-hidden">
+
+  <!-- ══════════════════════════════════════
+       LAYERED BACKGROUND SYSTEM
+  ══════════════════════════════════════ -->
+  <div class="fixed inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0"
+      style="background: radial-gradient(ellipse at top center, #0b1e0e 0%, #030704 50%, #010402 100%);">
+    </div>
+    <div class="absolute inset-0 opacity-[0.018]"
+      style="background-image: radial-gradient(rgba(255,255,255,0.55) 1px, transparent 1px);
+             background-size: 32px 32px;">
+    </div>
+    <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] rounded-full animate-blob"
+      style="background: radial-gradient(ellipse, rgba(34,197,94,0.13) 0%, transparent 70%); filter: blur(90px);">
+    </div>
+    <div class="absolute top-1/3 -left-48 w-[600px] h-[500px] rounded-full animate-blob-2"
+      style="background: radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%); filter: blur(110px);">
+    </div>
+    <div class="absolute top-1/2 -right-48 w-[550px] h-[650px] rounded-full animate-blob-3"
+      style="background: radial-gradient(ellipse, rgba(132,204,22,0.06) 0%, transparent 70%); filter: blur(120px);">
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]">
+    <div class="absolute inset-0 bg-canvas/80 backdrop-blur-xl"></div>
+    <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+      <a href="/" class="flex items-center gap-3">
+        <img src="/img/logo.svg" alt="Stay True logo" class="h-8 w-8" />
+        <span class="text-fg font-semibold text-lg tracking-tight">Stay True</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        {(["Services", "Work", "Process", "Contact"] as const).map(item => (
+          <a href={`#${item.toLowerCase()}`}
+            class="text-sm text-fg-muted hover:text-fg transition-colors duration-200">
+            {item}
+          </a>
+        ))}
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact"
+          class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 4px 16px rgba(34,197,94,0.28), inset 0 1px 0 rgba(255,255,255,0.14);">
+          Let's talk
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <button id="menu-toggle" class="md:hidden p-2 text-fg-muted hover:text-fg transition-colors" aria-label="Toggle menu">
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden relative border-t border-white/[0.06]">
+      <div class="absolute inset-0 bg-canvas/95 backdrop-blur-xl"></div>
+      <div class="relative px-6 py-6 flex flex-col gap-1">
+        {(["services", "work", "process", "contact"] as const).map(id => (
+          <a href={`#${id}`}
+            class="mobile-nav-link capitalize py-3 text-fg-muted hover:text-fg transition-colors border-b border-white/[0.04] last:border-0">
+            {id}
+          </a>
+        ))}
+        <a href="#contact"
+          class="mobile-nav-link mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
+          style="box-shadow: 0 0 0 1px rgba(34,197,94,0.4), 0 4px 14px rgba(34,197,94,0.25);">
+          Let's talk
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center pt-16">
+    <div class="max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow inline-block"></span>
+            Web · Mobile · Desktop Studio
+          </div>
+
+          <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.04]">
+            <span class="block grad-heading">We build</span>
+            <span class="block shimmer-text">software</span>
+            <span class="block grad-heading">that lasts.</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-fg-muted leading-relaxed max-w-lg">
+            Precision-crafted digital products for startups and enterprises. Web applications,
+            native mobile apps, and desktop software — built to perform, built to scale.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contact"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+              style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 6px 28px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.14);">
+              Start a project
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="#work"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-fg transition-all duration-200 hover:bg-white/[0.05]"
+              style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09);">
+              See our work
+            </a>
+          </div>
+
+          <div class="flex gap-8 pt-4 border-t border-white/[0.07]">
+            {[
+              { val: "50+",  label: "Projects delivered" },
+              { val: "3",    label: "Platforms mastered" },
+              { val: "100%", label: "Client satisfaction" },
+            ].map(s => (
+              <div>
+                <div class="text-2xl font-semibold text-fg">{s.val}</div>
+                <div class="text-xs text-fg-muted mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Hero visual -->
+        <div class="relative hidden lg:flex items-center justify-center h-[520px]">
+          <!-- Code card -->
+          <div class="absolute w-72 rounded-2xl overflow-hidden animate-float"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.025) 100%);
+                   border: 1px solid rgba(255,255,255,0.09);
+                   box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 24px 64px rgba(0,0,0,0.55), 0 0 80px rgba(34,197,94,0.07);">
+            <div class="px-4 py-3 border-b border-white/[0.06] flex items-center gap-1.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-400/60"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-accent/60"></div>
+              <span class="ml-3 text-[10px] text-fg-muted font-mono">app.tsx</span>
+            </div>
+            <div class="p-5 font-mono text-[11px] leading-[1.7]">
+              <div><span class="text-accent-lime">const</span>&nbsp;<span class="text-accent-bright">App</span>&nbsp;<span class="text-fg/40">=&nbsp;()&nbsp;=&gt;&nbsp;&#123;</span></div>
+              <div class="pl-4"><span class="text-accent-lime">return</span>&nbsp;<span class="text-fg/40">(</span></div>
+              <div class="pl-8"><span class="text-fg/50">&lt;</span><span class="text-accent">div</span>&nbsp;<span class="text-accent-mint">className</span><span class="text-fg/50">="</span><span class="text-accent-lime">root</span><span class="text-fg/50">"&gt;</span></div>
+              <div class="pl-12"><span class="text-fg/50">&lt;</span><span class="text-accent">Hero</span>&nbsp;<span class="text-fg/50">/&gt;</span></div>
+              <div class="pl-12"><span class="text-fg/50">&lt;</span><span class="text-accent">Services</span>&nbsp;<span class="text-fg/50">/&gt;</span></div>
+              <div class="pl-12"><span class="text-fg/50">&lt;</span><span class="text-accent">Contact</span>&nbsp;<span class="text-fg/50">/&gt;</span></div>
+              <div class="pl-8"><span class="text-fg/50">&lt;/</span><span class="text-accent">div</span><span class="text-fg/50">&gt;</span></div>
+              <div class="pl-4"><span class="text-fg/40">)</span></div>
+              <div><span class="text-fg/40">&#125;</span></div>
+            </div>
+          </div>
+
+          <!-- Web badge -->
+          <div class="absolute top-10 right-8 px-3 py-2.5 rounded-xl animate-float-slow"
+            style="background: rgba(5,12,7,0.9); border: 1px solid rgba(34,197,94,0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="#22c55e" stroke-width="2"><circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[10px] font-medium text-fg">Web App</div>
+                <div class="text-[9px] text-fg-muted">React / Next.js</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile badge -->
+          <div class="absolute bottom-20 left-4 px-3 py-2.5 rounded-xl animate-float"
+            style="background: rgba(5,12,7,0.9); border: 1px solid rgba(16,185,129,0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation-delay: -4s;">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.25);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="#10b981" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                  <line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[10px] font-medium text-fg">Mobile App</div>
+                <div class="text-[9px] text-fg-muted">React Native</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop badge -->
+          <div class="absolute top-28 left-2 px-3 py-2.5 rounded-xl animate-float-slower"
+            style="background: rgba(5,12,7,0.9); border: 1px solid rgba(132,204,22,0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                style="background: rgba(132,204,22,0.15); border: 1px solid rgba(132,204,22,0.25);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="#84cc16" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[10px] font-medium text-fg">Desktop App</div>
+                <div class="text-[9px] text-fg-muted">Tauri / Electron</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perf score -->
+          <div class="absolute bottom-6 right-2 px-4 py-3 rounded-xl animate-float-slow"
+            style="background: rgba(5,12,7,0.9); border: 1px solid rgba(255,255,255,0.09); box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation-delay: -6s;">
+            <div class="text-[9px] font-mono text-fg-muted tracking-widest uppercase mb-2">Performance</div>
+            <div class="flex items-end gap-1 mb-2">
+              <span class="text-2xl font-semibold text-accent leading-none">99</span>
+              <span class="text-fg-muted text-xs pb-0.5">/ 100</span>
+            </div>
+            <div class="h-1.5 w-24 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.07);">
+              <div class="h-full w-[99%] rounded-full"
+                style="background: linear-gradient(90deg, #10b981, #22c55e, #84cc16);">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════ -->
+  <section id="services" class="relative py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-2xl mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          What we do
+        </div>
+        <h2 class="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-5 grad-heading">
+          Every platform.<br/>One studio.
+        </h2>
+        <p class="text-lg text-fg-muted leading-relaxed">
+          We craft digital products across all major platforms — delivering consistent quality
+          and exceptional user experiences wherever your users are.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        {services.map(svc => (
+          <div
+            class="group card-spotlight rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);
+                   box-shadow: 0 0 0 1px rgba(255,255,255,0.035), 0 4px 28px rgba(0,0,0,0.32);"
+          >
+            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={`background: linear-gradient(135deg, ${svc.hoverGrad} 0%, transparent 55%);`}>
+            </div>
+
+            <div class="w-12 h-12 rounded-xl mb-6 flex items-center justify-center"
+              style={`background: ${svc.iconBg}; border: 1px solid ${svc.iconBorder};`}
+              set:html={svc.icon}>
+            </div>
+
+            <h3 class="text-xl font-semibold text-fg mb-3 tracking-tight">{svc.title}</h3>
+            <p class="text-sm text-fg-muted leading-relaxed mb-6">{svc.description}</p>
+
+            <div class="flex flex-wrap gap-2">
+              {svc.tags.map(tag => (
+                <span class="px-2 py-1 rounded-md text-[11px] font-mono"
+                  style={`color: ${svc.tagColor.text}; border: 1px solid ${svc.tagColor.border}; background: ${svc.tagColor.bg};`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BENTO FEATURES
+  ══════════════════════════════════════ -->
+  <section id="work" class="relative py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-2xl mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          Why Stay True
+        </div>
+        <h2 class="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-5 grad-heading">
+          Engineered for<br/>excellence.
+        </h2>
+        <p class="text-lg text-fg-muted leading-relaxed">
+          We don't just write code — we architect solutions. Every decision made
+          with performance, scalability, and long-term maintainability in mind.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[190px]">
+
+        <!-- Large: Clean code (4×2) -->
+        <div
+          class="group card-spotlight rounded-2xl p-6 overflow-hidden md:col-span-4 md:row-span-2"
+          style="background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.018) 100%);
+                 border: 1px solid rgba(255,255,255,0.07);
+                 box-shadow: 0 0 0 1px rgba(255,255,255,0.035), 0 8px 48px rgba(0,0,0,0.42);"
+        >
+          <div class="absolute inset-0 opacity-60 pointer-events-none"
+            style="background: radial-gradient(ellipse at 85% 10%, rgba(34,197,94,0.09) 0%, transparent 55%);">
+          </div>
+          <div class="relative h-full flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-4">ARCHITECTURE</div>
+              <h3 class="text-2xl font-semibold text-fg mb-3 tracking-tight">Clean, maintainable code</h3>
+              <p class="text-sm text-fg-muted leading-relaxed max-w-sm">
+                We follow SOLID principles and industry best practices. Code your team can understand,
+                extend, and maintain years after delivery — no spaghetti, no shortcuts.
+              </p>
+            </div>
+            <div class="rounded-xl overflow-hidden mt-4"
+              style="background: rgba(1,4,2,0.65); border: 1px solid rgba(255,255,255,0.06);">
+              <div class="px-4 py-2 border-b border-white/[0.05] flex gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-red-400/50"></div>
+                <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
+                <div class="w-2 h-2 rounded-full bg-accent/50"></div>
+              </div>
+              <div class="p-4 font-mono text-[11px] leading-[1.7]">
+                <div><span class="text-fg-muted">{"// Clean • Typed • Tested"}</span></div>
+                <div><span class="text-accent-lime">interface</span>&nbsp;<span class="text-accent-bright">ProjectConfig</span>&nbsp;<span class="text-fg/45">&#123;</span></div>
+                <div class="pl-4"><span class="text-accent-mint">name</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">string</span><span class="text-fg/45">;</span></div>
+                <div class="pl-4"><span class="text-accent-mint">scale</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">'startup'&nbsp;|&nbsp;'enterprise'</span><span class="text-fg/45">;</span></div>
+                <div class="pl-4"><span class="text-accent-mint">deploy</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">'cloud'&nbsp;|&nbsp;'on-prem'</span><span class="text-fg/45">;</span></div>
+                <div><span class="text-fg/45">&#125;</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Small bento cards (2 cols each) -->
+        {bentoFeatures.map(f => (
+          <div
+            class={`group card-spotlight rounded-2xl p-5 ${f.span}`}
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.016) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);
+                   box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
+          >
+            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={`background: radial-gradient(ellipse at 50% 0%, ${f.accentBg.replace('0.15','0.07')} 0%, transparent 65%);`}>
+            </div>
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+              style={`background: ${f.accentBg}; border: 1px solid ${f.accentBorder};`}
+              set:html={f.icon}>
+            </div>
+            <div class="text-[9px] font-mono tracking-widest uppercase mb-2" style={`color: ${f.accent};`}>{f.label}</div>
+            <h3 class="text-sm font-semibold text-fg mb-2 leading-snug">{f.title}</h3>
+            <p class="text-xs text-fg-muted leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TECH STACK
+  ══════════════════════════════════════ -->
+  <section class="relative py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          Tech stack
+        </div>
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight grad-heading">
+          The tools we master
+        </h2>
+      </div>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+        {techStack.map(t => (
+          <div
+            class="flex flex-col items-center gap-2 p-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-default"
+            style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);">
+            <span class="text-xs font-medium text-center leading-tight" style={`color: ${t.color};`}>{t.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PROCESS
+  ══════════════════════════════════════ -->
+  <section id="process" class="relative py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          Our process
+        </div>
+        <h2 class="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-5 grad-heading">
+          From idea to<br/>production.
+        </h2>
+        <p class="text-lg text-fg-muted leading-relaxed">
+          A proven four-step process that keeps you in control while we handle the complexity.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {processSteps.map(item => (
+          <div
+            class="group card-spotlight rounded-2xl p-6"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.016) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);
+                   box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);">
+            <div class="text-5xl font-bold font-mono mb-4 leading-none" style="color: rgba(34,197,94,0.12);">{item.step}</div>
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-4 text-accent"
+              style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.22);"
+              set:html={item.icon}>
+            </div>
+            <h3 class="text-base font-semibold text-fg mb-3 tracking-tight">{item.title}</h3>
+            <p class="text-sm text-fg-muted leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CTA
+  ══════════════════════════════════════ -->
+  <section id="contact" class="relative py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+      <div class="w-[640px] h-[400px] rounded-full animate-pulse-glow"
+        style="background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 70%); filter: blur(60px);">
+      </div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow inline-block"></span>
+        Available for new projects
+      </div>
+      <h2 class="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
+        <span class="grad-heading">Ready to build</span>
+        <br />
+        <span class="shimmer-text">something great?</span>
+      </h2>
+      <p class="text-lg text-fg-muted leading-relaxed mb-10 max-w-xl mx-auto">
+        Tell us about your project and we'll get back to you within 24 hours.
+        No commitment required — just a conversation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="mailto:hello@staytrue.dev"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 10px 40px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.14);">
+          Start a conversation
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <div class="flex items-center gap-2 text-sm text-fg-muted">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Response within 24 hours
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="relative border-t border-white/[0.06]" style="background: #010402;">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <a href="/" class="flex items-center gap-3 mb-4">
+            <img src="/img/logo.svg" alt="Stay True" class="h-7 w-7" />
+            <span class="text-fg font-semibold">Stay True</span>
+          </a>
+          <p class="text-sm text-fg-muted leading-relaxed">
+            Digital development studio crafting exceptional software for every platform.
+          </p>
+        </div>
+        <div>
+          <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Services</div>
+          <ul class="space-y-3">
+            {["Web Development", "Mobile Apps", "Desktop Apps"].map(s => (
+              <li><a href="#services" class="text-sm text-fg-muted hover:text-fg transition-colors">{s}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Company</div>
+          <ul class="space-y-3">
+            {([["Work", "#work"], ["Process", "#process"], ["Contact", "#contact"]] as const).map(([label, href]) => (
+              <li><a href={href} class="text-sm text-fg-muted hover:text-fg transition-colors">{label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Contact</div>
+          <ul class="space-y-3">
+            <li>
+              <a href="mailto:hello@staytrue.dev" class="text-sm text-fg-muted hover:text-fg transition-colors">
+                hello@staytrue.dev
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-fg-muted">© 2025 Stay True. All rights reserved.</p>
+        <div class="flex items-center gap-1.5 text-xs text-fg-muted">
+          <span>Built with precision.</span>
+          <span class="text-accent">◆</span>
+          <span>Stay True.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+  // ── Mobile menu ───────────────────────────────────────────
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen   = document.getElementById('icon-open');
+  const iconClose  = document.getElementById('icon-close');
+
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+
+  // ── Card spotlight ───────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.card-spotlight').forEach(card => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // ── Smooth scroll ─────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Navbar border on scroll ───────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar?.style.setProperty(
+      'border-color',
+      window.scrollY > 20 ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.06)'
+    );
+  }, { passive: true });
+
+  // ── Scroll reveal ─────────────────────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll<HTMLElement>('section').forEach(section => {
+    Array.from(section.children).forEach((child, i) => {
+      const el = child as HTMLElement;
+      if (el.dataset.noReveal || el.classList.contains('absolute') || el.classList.contains('fixed')) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = `opacity 0.65s cubic-bezier(0.16,1,0.3,1) ${i * 90}ms, transform 0.65s cubic-bezier(0.16,1,0.3,1) ${i * 90}ms`;
+      io.observe(el);
+    });
+  });
+</script>
+
 </html>
