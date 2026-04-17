@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Let Lenis own smooth scrolling — disable native */
+html { scroll-behavior: auto; }
+
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
 
@@ -119,3 +122,21 @@
     background-clip: text;
   }
 }
+
+/* ─── Scroll progress bar (GSAP animates scaleX) ────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #10b981, #22c55e, #84cc16);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ─── Process step / number active state (CSS transition) ───── */
+.process-step  { transition: border-color 0.5s ease, box-shadow 0.5s ease; }
+.step-number   { transition: color 0.5s ease; }
