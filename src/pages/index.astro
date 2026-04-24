@@ -918,23 +918,24 @@ const processSteps = [
 
   mm.add('(prefers-reduced-motion: no-preference)', () => {
 
-    // ── Hero entrance ──────────────────────────────────────
+    // ── Hero entrance — 3D emerge from depth ──────────────────
     const heroText   = document.querySelector<HTMLElement>('.hero-parallax-text');
     const heroVisual = document.querySelector<HTMLElement>('.hero-parallax-visual');
     if (heroText) {
-      gsap.from(gsap.utils.toArray<HTMLElement>(heroText.children), {
-        opacity: 0, y: 32, duration: 0.9,
-        stagger: 0.12, ease: 'power3.out', delay: 0.1, clearProps: 'all',
-      });
+      gsap.timeline({ delay: 0.15 })
+        .from(gsap.utils.toArray<HTMLElement>(heroText.children), {
+          opacity: 0, y: 48, rotateX: -14, transformPerspective: 900,
+          duration: 1, stagger: 0.11, ease: 'expo.out', clearProps: 'all',
+        });
     }
     if (heroVisual) {
       gsap.from(heroVisual, {
-        opacity: 0, x: 48, duration: 1,
-        ease: 'power3.out', delay: 0.35, clearProps: 'all',
+        opacity: 0, x: 72, rotateY: 12, transformPerspective: 1400,
+        duration: 1.15, ease: 'expo.out', delay: 0.35, clearProps: 'all',
       });
     }
 
-    // ── Stats counter ──────────────────────────────────────
+    // ── Stats counter ──────────────────────────────────────────
     document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el => {
       const target = parseInt(el.dataset.counter || '0', 10);
       const prefix = el.dataset.prefix || '';
@@ -949,85 +950,115 @@ const processSteps = [
       });
     });
 
-    // ── Helper: section header stagger ─────────────────────
+    // ── Helper: section header — snap-in on enter ─────────────
     function animateHeader(selector: string) {
       const el = document.querySelector(selector);
       if (!el) return;
       gsap.from(gsap.utils.toArray<HTMLElement>(el.children), {
-        opacity: 0, y: 28, duration: 0.75, stagger: 0.1, ease: 'power3.out', clearProps: 'all',
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+        opacity: 0, y: 30, rotateX: -10, transformPerspective: 700,
+        duration: 0.8, stagger: 0.1, ease: 'expo.out', clearProps: 'all',
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
       });
     }
 
-    // ── SERVICIOS — clip-path wipe upward per card ─────────
+    // ── Shared perspective on grid containers ─────────────────
+    // (all cards share one vanishing point = coherent 3D space)
+    ['#servicios .grid', '#nosotros .grid', '#proceso .grid'].forEach(sel => {
+      const el = document.querySelector<HTMLElement>(sel);
+      if (el) el.style.perspective = '1400px';
+    });
+
+    // ── SERVICIOS — scrub: cards tilt up as they enter ───────
     animateHeader('#servicios .section-header');
     gsap.utils.toArray<HTMLElement>('#servicios .card-spotlight').forEach((card, i) => {
       gsap.fromTo(card,
-        { clipPath: 'inset(0 0 100% 0 round 1rem)' },
+        { opacity: 0, y: 120, rotateX: -32 },
         {
-          clipPath: 'inset(0 0 0% 0 round 1rem)',
-          duration: 0.7, ease: 'expo.out', clearProps: 'clip-path',
-          delay: i * 0.12,
-          scrollTrigger: { trigger: '#servicios .grid', start: 'top 80%', toggleActions: 'play none none none' },
+          opacity: 1, y: 0, rotateX: 0, ease: 'none',
+          scrollTrigger: {
+            trigger: '#servicios .grid',
+            start: `top ${95 - i * 4}%`,
+            end: `top ${20 - i * 4}%`,
+            scrub: 0.8,
+          },
         }
       );
     });
 
-    // ── PROYECTOS — scrub-linked horizontal drift per card ──
+    // ── PROYECTOS — scrub: each card drifts in from its side ──
     animateHeader('#proyectos .section-header');
     gsap.utils.toArray<HTMLElement>('#proyectos .card-spotlight').forEach((card, i) => {
-      const fromLeft = i % 2 === 0;
+      const fromLeft = i % 3 !== 2;
       gsap.fromTo(card,
-        { opacity: 0, x: fromLeft ? -60 : 60, rotateY: fromLeft ? -6 : 6 },
+        { opacity: 0, x: fromLeft ? -80 : 80, rotateY: fromLeft ? -22 : 22, transformPerspective: 1000 },
         {
-          opacity: 1, x: 0, rotateY: 0,
-          duration: 0.85, ease: 'expo.out', clearProps: 'opacity,transform',
-          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' },
+          opacity: 1, x: 0, rotateY: 0, ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 100%',
+            end: 'center center',
+            scrub: 0.7,
+          },
         }
       );
     });
 
-    // ── NOSOTROS — scale-in from blur (main) + rotate-in (small) ──
+    // ── NOSOTROS — scrub: main rises from depth, cards tilt in ─
     animateHeader('#nosotros .section-header');
     gsap.fromTo('#bento-main',
-      { opacity: 0, scale: 0.92, filter: 'blur(8px)' },
+      { opacity: 0, scale: 0.8, rotateX: 14, filter: 'blur(10px)' },
       {
-        opacity: 1, scale: 1, filter: 'blur(0px)',
-        duration: 1, ease: 'expo.out', clearProps: 'opacity,transform,filter',
-        scrollTrigger: { trigger: '#bento-main', start: 'top 82%', toggleActions: 'play none none none' },
+        opacity: 1, scale: 1, rotateX: 0, filter: 'blur(0px)', ease: 'none',
+        scrollTrigger: {
+          trigger: '#bento-main',
+          start: 'top 100%',
+          end: 'center center',
+          scrub: 1,
+        },
       }
     );
     gsap.utils.toArray<HTMLElement>('#nosotros .card-spotlight:not(#bento-main)').forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 40, rotate: i % 2 === 0 ? -1.5 : 1.5 },
+        { opacity: 0, y: 90, rotateX: -20, rotate: i % 2 === 0 ? -3 : 3 },
         {
-          opacity: 1, y: 0, rotate: 0,
-          duration: 0.7, ease: 'expo.out', clearProps: 'opacity,transform',
-          delay: i * 0.08,
-          scrollTrigger: { trigger: '#nosotros .grid', start: 'top 78%', toggleActions: 'play none none none' },
+          opacity: 1, y: 0, rotateX: 0, rotate: 0, ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 100%',
+            end: 'center center',
+            scrub: 0.8,
+          },
         }
       );
     });
 
-    // ── STACK — sequential fade-up, crisp expo.out ─────────
+    // ── STACK — snap flip wave (all visible at once → toggle) ─
     animateHeader('#stack .section-header');
     gsap.from('#stack .grid > div', {
-      opacity: 0, y: 18, scale: 0.92, duration: 0.5,
-      stagger: { each: 0.05, from: 'start' },
-      ease: 'expo.out', clearProps: 'opacity,transform',
-      scrollTrigger: { trigger: '#stack .grid', start: 'top 85%', toggleActions: 'play none none none' },
+      opacity: 0, rotateY: 90, transformPerspective: 800,
+      duration: 0.55, stagger: { each: 0.045, from: 'start' },
+      ease: 'back.out(1.6)', clearProps: 'all',
+      scrollTrigger: { trigger: '#stack .grid', start: 'top 90%', toggleActions: 'play none none none' },
     });
 
-    // ── PROCESO — slide from right + glow ──────────────────
+    // ── PROCESO — timeline scrubbed: steps reveal sequentially ─
     animateHeader('#proceso .section-header');
+    const processTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#proceso .grid',
+        start: 'top 85%',
+        end: 'bottom 20%',
+        scrub: 1,
+      },
+    });
     gsap.utils.toArray<HTMLElement>('.process-step').forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0, x: 70, duration: 0.75, ease: 'expo.out', clearProps: 'opacity,transform',
-        delay: i * 0.12,
-        scrollTrigger: { trigger: '#proceso .grid', start: 'top 78%', toggleActions: 'play none none none' },
-      });
+      processTl.fromTo(card,
+        { opacity: 0, x: 110, rotateY: -20 },
+        { opacity: 1, x: 0, rotateY: 0, ease: 'none', duration: 1 },
+        i * 0.6
+      );
       ScrollTrigger.create({
-        trigger: card, start: 'top 68%',
+        trigger: card, start: 'top 80%',
         onEnter: () => {
           card.style.borderColor = 'rgba(34,197,94,0.28)';
           card.style.boxShadow   = '0 0 0 1px rgba(34,197,94,0.1), 0 4px 32px rgba(0,0,0,0.32), 0 0 28px rgba(34,197,94,0.07)';
@@ -1037,35 +1068,39 @@ const processSteps = [
       });
     });
 
-    // ── CONTACTO — clip-path wipe from bottom + stagger ────
+    // ── CONTACTO — scrub: section rises from depth ────────────
     const ctaInner = document.querySelector<HTMLElement>('#contacto .relative.max-w-4xl');
     if (ctaInner) {
       gsap.fromTo(ctaInner,
-        { clipPath: 'inset(100% 0 0% 0)' },
+        { opacity: 0, y: 100, scale: 0.88, rotateX: 18, transformPerspective: 1200 },
         {
-          clipPath: 'inset(0% 0 0% 0)',
-          duration: 1, ease: 'expo.out', clearProps: 'clip-path',
-          scrollTrigger: { trigger: '#contacto', start: 'top 75%', toggleActions: 'play none none none' },
+          opacity: 1, y: 0, scale: 1, rotateX: 0, ease: 'none',
+          scrollTrigger: {
+            trigger: '#contacto',
+            start: 'top 100%',
+            end: 'center center',
+            scrub: 0.9,
+          },
         }
       );
       gsap.from(gsap.utils.toArray<HTMLElement>(ctaInner.children), {
-        opacity: 0, y: 30, duration: 0.7, stagger: 0.1, ease: 'power3.out', clearProps: 'opacity,transform',
+        opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'all',
         delay: 0.3,
-        scrollTrigger: { trigger: '#contacto', start: 'top 75%', toggleActions: 'play none none none' },
+        scrollTrigger: { trigger: '#contacto', start: 'top 85%', toggleActions: 'play none none none' },
       });
     }
   });
 
-  // ── Hero parallax — desktop only ──────────────────────────
+  // ── Hero parallax — desktop: text tilts back, visual tilts away
   mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
     const heroSection = document.querySelector('section');
     if (!heroSection) return;
     gsap.to('.hero-parallax-text', {
-      y: -60, ease: 'none', immediateRender: false,
+      y: -90, rotateX: 8, transformPerspective: 1200, ease: 'none', immediateRender: false,
       scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: true },
     });
     gsap.to('.hero-parallax-visual', {
-      y: 40, ease: 'none', immediateRender: false,
+      y: 65, rotateY: -8, transformPerspective: 1200, ease: 'none', immediateRender: false,
       scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: true },
     });
   });
