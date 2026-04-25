@@ -17,6 +17,7 @@ Portfolio/marketing site for **Stay True Digital Studio**, a web development age
 | Styling | Tailwind CSS v4.2.2 |
 | Animation | GSAP v3.15.0 + ScrollTrigger |
 | Smooth scroll | Lenis v1.3.23 |
+| 3D (Hero) | Three.js v0.184.0 (particle network) |
 | Package manager | pnpm |
 | Node.js | >=22.12.0 |
 
@@ -37,7 +38,7 @@ pnpm preview    # preview dist/
 ```
 src/
   pages/
-    index.astro       # ENTIRE SITE — 1,100+ lines, monolithic
+    index.astro       # ENTIRE SITE — ~1,260 lines, monolithic
   styles/
     global.css        # Tailwind import + custom theme vars + keyframes
 public/
@@ -83,14 +84,15 @@ tsconfig.json         # extends astro/tsconfigs/strict
 All animations managed via GSAP + ScrollTrigger. Key patterns:
 
 - **Scroll progress bar** — fixed top, width tied to scroll position
-- **Hero entrance** — staggered fade-up on load
+- **Hero entrance** — staggered 3D emerge (rotateX / rotateY / perspective) on load
+- **Hero background** — Three.js particle network with connection lines (130 particles desktop, 55 mobile), mouse parallax, scroll-linked camera depth
 - **Stats counters** — animated number increment on scroll-into-view
-- **Section headers** — stagger animations per section
-- **Service cards** — clip-path wipe reveal
-- **Project cards** — horizontal drift on scroll
-- **Why Us / Bento** — scale-in + rotate
-- **Stack badges** — sequential fade-up
-- **Process steps** — slide-in left/right
+- **Section headers** — stagger animations per section (rotateX perspective)
+- **Service cards** — 3D tilt-up scrub reveal (rotateX)
+- **Project cards** — horizontal drift on scroll (rotateY from left/right)
+- **Why Us / Bento** — main card scale-in + blur, feature cards tilt-in with rotation
+- **Stack badges** — sequential rotateY flip wave
+- **Process steps** — scrubbed timeline slide-in + active glow state
 
 **Lenis** wraps all scrolling (1.2s duration). GSAP ticker runs inside Lenis RAF.
 
@@ -103,7 +105,7 @@ All animations managed via GSAP + ScrollTrigger. Key patterns:
 1. **Hero** — headline, location badge, CTA buttons (WhatsApp + portfolio), stats
 2. **Servicios** — Web Dev, Mobile Apps, Desktop Apps
 3. **Proyectos** — 12 real projects (see data array in index.astro)
-4. **Por Qué Stay True** — bento grid (5 value props)
+4. **Por Qué Stay True** — bento grid: 1 hardcoded main card (`#bento-main`) + 4 array items from `bentoFeatures`
 5. **Stack Tecnológico** — 12 tech badges
 6. **Proceso** — 4-step methodology
 7. **Contacto** — CTA section (WhatsApp + Email)
@@ -119,7 +121,7 @@ All site content is defined as arrays near top of frontmatter:
 |---|---|
 | `services` | 3 service definitions |
 | `projects` | 12 project entries (name, url, desc, stack, active) |
-| `bentoFeatures` | 5 value propositions |
+| `bentoFeatures` | 4 value propositions (rendered into bento grid alongside hardcoded main card) |
 | `techStack` | 12 tech badges |
 | `processSteps` | 4 process steps |
 
@@ -141,10 +143,12 @@ To add/edit content → find these arrays, edit inline. No CMS, no external data
 ## Known Architecture Notes
 
 - `dist/` is committed to repo (built output tracked)
-- All JS is inline in `<script>` tag at bottom of index.astro
+- All JS is inline in `<script>` tag at bottom of index.astro (~lines 887–1259)
 - No dynamic routing — single `index.astro` = entire site
 - Tailwind v4 uses `@import "tailwindcss"` syntax (not v3 `@tailwind` directives)
 - GSAP ScrollTrigger registered via `gsap.registerPlugin(ScrollTrigger)`
+- Three.js particle scene is inside the same `<script>`, only runs if `prefers-reduced-motion: reduce` is NOT matched
+- Mobile menu toggle + card spotlight mouse-tracking are vanilla JS in the same inline script
 
 ---
 

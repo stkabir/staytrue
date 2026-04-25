@@ -329,7 +329,8 @@ const processSteps = [
        HERO
   ══════════════════════════════════════ -->
   <section class="relative min-h-screen flex items-center pt-16">
-    <div class="max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
 
         <div class="space-y-8 hero-parallax-text">
@@ -887,6 +888,7 @@ const processSteps = [
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import Lenis from 'lenis';
+  import * as THREE from 'three';
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -1141,10 +1143,119 @@ const processSteps = [
       const target = document.querySelector<HTMLElement>(href);
       if (target) {
         e.preventDefault();
-        lenis.scrollTo(target, { offset: -64 }); // offset for navbar height
+        lenis.scrollTo(target, { offset: -64 });
       }
     });
   });
+
+  // ── Hero particle network (Three.js) ──────────────────────
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+    if (canvas) {
+      const W = () => window.innerWidth;
+      const H = () => window.innerHeight;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setClearColor(0x000000, 0);
+      renderer.setSize(W(), H(), false);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(65, W() / H(), 0.1, 50);
+      camera.position.z = 5.5;
+
+      // ── Particles ──
+      const COUNT = W() < 768 ? 55 : 130;
+      const posArr = new Float32Array(COUNT * 3);
+      const pData: { x: number; y: number; z: number; vx: number; vy: number; vz: number }[] = [];
+
+      for (let i = 0; i < COUNT; i++) {
+        const x = (Math.random() - 0.5) * 18;
+        const y = (Math.random() - 0.5) * 12;
+        const z = (Math.random() - 0.5) * 6;
+        posArr[i * 3] = x; posArr[i * 3 + 1] = y; posArr[i * 3 + 2] = z;
+        pData.push({ x, y, z,
+          vx: (Math.random() - 0.5) * 0.007,
+          vy: (Math.random() - 0.5) * 0.005,
+          vz: (Math.random() - 0.5) * 0.003,
+        });
+      }
+
+      const pointGeo = new THREE.BufferGeometry();
+      const posAttr = new THREE.BufferAttribute(posArr, 3);
+      pointGeo.setAttribute('position', posAttr);
+      scene.add(new THREE.Points(pointGeo,
+        new THREE.PointsMaterial({ color: 0x22c55e, size: 0.06, transparent: true, opacity: 0.85, sizeAttenuation: true })
+      ));
+
+      // ── Connection lines ──
+      const MAX_LINES = 250;
+      const lineArr = new Float32Array(MAX_LINES * 6);
+      const lineGeo = new THREE.BufferGeometry();
+      const lineAttr = new THREE.BufferAttribute(lineArr, 3);
+      lineGeo.setAttribute('position', lineAttr);
+      lineGeo.setDrawRange(0, 0);
+      scene.add(new THREE.LineSegments(lineGeo,
+        new THREE.LineBasicMaterial({ color: 0x22c55e, transparent: true, opacity: 0.14 })
+      ));
+
+      // ── Mouse parallax ──
+      let mx = 0, my = 0;
+      window.addEventListener('mousemove', (e: MouseEvent) => {
+        mx = (e.clientX / W() - 0.5) * 2;
+        my = -(e.clientY / H() - 0.5) * 2;
+      });
+
+      // ── Resize ──
+      window.addEventListener('resize', () => {
+        renderer.setSize(W(), H(), false);
+        camera.aspect = W() / H();
+        camera.updateProjectionMatrix();
+      });
+
+      // ── Render loop ──
+      const THRESHOLD_SQ = 3.4 * 3.4;
+      const docH = () => document.documentElement.scrollHeight - H();
+
+      ;(function tick() {
+        requestAnimationFrame(tick);
+
+        for (let i = 0; i < COUNT; i++) {
+          const d = pData[i];
+          d.x += d.vx; d.y += d.vy; d.z += d.vz;
+          if (Math.abs(d.x) > 9)   d.vx *= -1;
+          if (Math.abs(d.y) > 6)   d.vy *= -1;
+          if (Math.abs(d.z) > 3)   d.vz *= -1;
+          posArr[i * 3] = d.x; posArr[i * 3 + 1] = d.y; posArr[i * 3 + 2] = d.z;
+        }
+        posAttr.needsUpdate = true;
+
+        let lc = 0;
+        outer: for (let i = 0; i < COUNT; i++) {
+          for (let j = i + 1; j < COUNT; j++) {
+            if (lc >= MAX_LINES) break outer;
+            const dx = pData[i].x - pData[j].x;
+            const dy = pData[i].y - pData[j].y;
+            const dz = pData[i].z - pData[j].z;
+            if (dx * dx + dy * dy + dz * dz < THRESHOLD_SQ) {
+              const o = lc * 6;
+              lineArr[o]     = pData[i].x; lineArr[o + 1] = pData[i].y; lineArr[o + 2] = pData[i].z;
+              lineArr[o + 3] = pData[j].x; lineArr[o + 4] = pData[j].y; lineArr[o + 5] = pData[j].z;
+              lc++;
+            }
+          }
+        }
+        lineGeo.setDrawRange(0, lc * 2);
+        lineAttr.needsUpdate = true;
+
+        camera.position.x += (mx * 0.7 - camera.position.x) * 0.045;
+        camera.position.y += (my * 0.45 - camera.position.y) * 0.045;
+        camera.position.z = 5.5 - (window.scrollY / Math.max(docH(), 1)) * 2.8;
+
+        renderer.render(scene, camera);
+      })();
+    }
+  }
 </script>
 
 </html>
