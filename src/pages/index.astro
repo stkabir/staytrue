@@ -286,7 +286,7 @@ const processSteps = [
 
       <div class="flex items-center gap-3">
         <a href="#contacto"
-          class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          class="magnetic-btn hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 4px 16px rgba(34,197,94,0.28), inset 0 1px 0 rgba(255,255,255,0.14);">
           Hablemos
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -317,7 +317,7 @@ const processSteps = [
           </a>
         ))}
         <a href="#contacto"
-          class="mobile-nav-link mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
+          class="mobile-nav-link magnetic-btn mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.4), 0 4px 14px rgba(34,197,94,0.25);">
           Hablemos
         </a>
@@ -335,25 +335,25 @@ const processSteps = [
 
         <div class="space-y-8 hero-parallax-text">
           <!-- Location badge -->
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase hero-location-badge">
             <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow inline-block"></span>
             Cancún, México · Web · Móvil · Escritorio
           </div>
 
-          <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.04]">
+          <h1 id="hero-headline" class="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.04]">
             <span class="block grad-heading">Construimos</span>
             <span class="block shimmer-text">software</span>
             <span class="block grad-heading">que perdura.</span>
           </h1>
 
-          <p class="text-lg md:text-xl text-fg-muted leading-relaxed max-w-lg">
+          <p class="text-lg md:text-xl text-fg-muted leading-relaxed max-w-lg hero-description">
             Estudio de desarrollo digital mexicano con más de 7 años de experiencia.
             Aplicaciones web, apps móviles y software de escritorio — construidos para rendir y escalar.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex flex-col sm:flex-row gap-4 hero-ctas">
             <a href="#contacto"
-              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+              class="magnetic-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
               style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 6px 28px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.14);">
               Iniciar un proyecto
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -368,7 +368,7 @@ const processSteps = [
             </a>
           </div>
 
-          <div class="flex gap-8 pt-4 border-t border-white/[0.07]">
+          <div class="flex gap-8 pt-4 border-t border-white/[0.07] hero-stats">
             {[
               { val: "+7",   label: "Años de experiencia", counter: 7  },
               { val: "+12",  label: "Proyectos entregados", counter: 12 },
@@ -796,7 +796,7 @@ const processSteps = [
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <a href="https://wa.me/529981169584"
           target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 10px 40px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.14);">
           Escribir por WhatsApp
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -904,14 +904,14 @@ const processSteps = [
     scrollTrigger: { start: 'top top', end: 'max', scrub: 0 },
   });
 
-  // ── Navbar border ─────────────────────────────────────────
-  const navbar = document.getElementById('navbar');
+  // ── Navbar scrolled state (CSS class toggle) ─────────────
   ScrollTrigger.create({
     start: 'top -1',
     onUpdate: (self) => {
-      if (navbar) navbar.style.borderColor = self.progress > 0
-        ? 'rgba(255,255,255,0.09)'
-        : 'rgba(255,255,255,0.06)';
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        navbar.classList.toggle('navbar-scrolled', self.progress > 0);
+      }
     },
   });
 
@@ -920,191 +920,246 @@ const processSteps = [
 
   mm.add('(prefers-reduced-motion: no-preference)', () => {
 
-    // ── Hero entrance — 3D emerge from depth ──────────────────
-    const heroText   = document.querySelector<HTMLElement>('.hero-parallax-text');
-    const heroVisual = document.querySelector<HTMLElement>('.hero-parallax-visual');
-    if (heroText) {
-      gsap.timeline({ delay: 0.15 })
-        .from(gsap.utils.toArray<HTMLElement>(heroText.children), {
-          opacity: 0, y: 48, rotateX: -14, transformPerspective: 900,
-          duration: 1, stagger: 0.11, ease: 'expo.out', clearProps: 'all',
-        });
-    }
-    if (heroVisual) {
-      gsap.from(heroVisual, {
-        opacity: 0, x: 72, rotateY: 12, transformPerspective: 1400,
-        duration: 1.15, ease: 'expo.out', delay: 0.35, clearProps: 'all',
-      });
-    }
+    // ── HERO ENTRANCE ─────────────────────────────────────────
+    const heroTl = gsap.timeline({ delay: 0.15 });
 
-    // ── Stats counter ──────────────────────────────────────────
+    heroTl.from('.hero-location-badge', {
+      opacity: 0, y: 16, duration: 0.5, ease: 'power3.out',
+    });
+
+    heroTl.from('#hero-headline span', {
+      clipPath: 'inset(0 100% 0 0)',
+      opacity: 0,
+      y: 40,
+      rotateX: -25,
+      transformPerspective: 900,
+      transformOrigin: 'left center',
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'expo.out',
+    }, 0.1);
+
+    heroTl.from('.hero-description', {
+      opacity: 0, y: 30, duration: 0.6, ease: 'power3.out',
+    }, 0.55);
+
+    heroTl.from('.hero-ctas > *', {
+      opacity: 0, y: 20, duration: 0.5, stagger: 0.1, ease: 'power3.out',
+    }, 0.7);
+
+    heroTl.from('.hero-parallax-visual', {
+      opacity: 0, x: 72, rotateY: 12, transformPerspective: 1400,
+      duration: 1.15, ease: 'expo.out',
+    }, 0.2);
+
+    heroTl.from('.hero-stats', {
+      opacity: 0, y: 16, duration: 0.5, ease: 'power3.out',
+    }, 0.8);
+
+    // ── STATS COUNTERS (scroll-triggered) ─────────────────────
     document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el => {
       const target = parseInt(el.dataset.counter || '0', 10);
       const prefix = el.dataset.prefix || '';
       el.textContent = prefix + '0';
       const obj = { val: 0 };
       ScrollTrigger.create({
-        trigger: el, start: 'top 88%',
-        onEnter: () => gsap.to(obj, {
-          val: target, duration: 1.4, ease: 'power2.out',
-          onUpdate: () => { el.textContent = prefix + Math.round(obj.val); },
-        }),
+        trigger: el,
+        start: 'top 88%',
+        onEnter: () => {
+          gsap.to(obj, {
+            val: target,
+            duration: 2,
+            ease: 'power2.out',
+            onUpdate: () => {
+              el.textContent = prefix + Math.round(obj.val);
+            },
+          });
+        },
       });
     });
 
-    // ── Helper: section header — snap-in on enter ─────────────
-    function animateHeader(selector: string) {
-      const el = document.querySelector(selector);
-      if (!el) return;
-      gsap.from(gsap.utils.toArray<HTMLElement>(el.children), {
-        opacity: 0, y: 30, rotateX: -10, transformPerspective: 700,
-        duration: 0.8, stagger: 0.1, ease: 'expo.out', clearProps: 'all',
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
-      });
-    }
-
-    // ── Shared perspective on grid containers ─────────────────
-    // (all cards share one vanishing point = coherent 3D space)
-    ['#servicios .grid', '#nosotros .grid', '#proceso .grid'].forEach(sel => {
-      const el = document.querySelector<HTMLElement>(sel);
-      if (el) el.style.perspective = '1400px';
+    // ── SECTION HEADERS (shared helper) ───────────────────────
+    gsap.utils.toArray<HTMLElement>('.section-header').forEach((header, i) => {
+      const children = header.children;
+      gsap.fromTo(children,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
-    // ── SERVICIOS — scrub: cards tilt up as they enter ───────
-    animateHeader('#servicios .section-header');
+    // ── SERVICIOS ─────────────────────────────────────────────
     gsap.utils.toArray<HTMLElement>('#servicios .card-spotlight').forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 120, rotateX: -32 },
+        { opacity: 0, y: 60 },
         {
-          opacity: 1, y: 0, rotateX: 0, ease: 'none',
+          opacity: 1,
+          y: 0,
+          ease: 'expo.out',
+          duration: 0.8,
+          delay: i * 0.15,
           scrollTrigger: {
             trigger: '#servicios .grid',
-            start: `top ${95 - i * 4}%`,
-            end: `top ${20 - i * 4}%`,
-            scrub: 0.8,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
           },
         }
       );
     });
 
-    // ── PROYECTOS — scrub: each card drifts in from its side ──
-    animateHeader('#proyectos .section-header');
-    gsap.utils.toArray<HTMLElement>('#proyectos .card-spotlight').forEach((card, i) => {
-      const fromLeft = i % 3 !== 2;
-      gsap.fromTo(card,
-        { opacity: 0, x: fromLeft ? -80 : 80, rotateY: fromLeft ? -22 : 22, transformPerspective: 1000 },
+    // ── PROYECTOS — by row (3 cards per row) ─────────────────
+    const projectCards = gsap.utils.toArray<HTMLElement>('#proyectos .card-spotlight');
+    const rowSize = 3;
+    const rowTriggers = ['top 80%', 'top 70%', 'top 60%', 'top 50%'];
+
+    for (let row = 0; row < Math.ceil(projectCards.length / rowSize); row++) {
+      const rowCards = projectCards.slice(row * rowSize, (row + 1) * rowSize);
+      const triggerPos = rowTriggers[row] || 'top 45%';
+
+      gsap.fromTo(rowCards,
+        { opacity: 0, y: 80 },
         {
-          opacity: 1, x: 0, rotateY: 0, ease: 'none',
+          opacity: 1,
+          y: 0,
+          ease: 'expo.out',
+          duration: 0.8,
+          stagger: 0.12,
           scrollTrigger: {
-            trigger: card,
-            start: 'top 100%',
-            end: 'center center',
-            scrub: 0.7,
+            trigger: '#proyectos .grid',
+            start: triggerPos,
+            toggleActions: 'play none none none',
           },
         }
       );
-    });
+    }
 
-    // ── NOSOTROS — scrub: main rises from depth, cards tilt in ─
-    animateHeader('#nosotros .section-header');
+    // ── BENTO MAIN — 3D flip horizontal ─────────────────────
     gsap.fromTo('#bento-main',
-      { opacity: 0, scale: 0.8, rotateX: 14, filter: 'blur(10px)' },
+      { opacity: 0, scale: 0.85, rotateY: 8, filter: 'blur(12px)' },
       {
-        opacity: 1, scale: 1, rotateX: 0, filter: 'blur(0px)', ease: 'none',
+        opacity: 1,
+        scale: 1,
+        rotateY: 0,
+        filter: 'blur(0px)',
+        ease: 'expo.out',
+        duration: 1.0,
         scrollTrigger: {
           trigger: '#bento-main',
-          start: 'top 100%',
-          end: 'center center',
-          scrub: 1,
+          start: 'top 70%',
+          toggleActions: 'play none none none',
         },
       }
     );
+
+    // ── FEATURE CARDS — 3D tilt ──────────────────────────────
     gsap.utils.toArray<HTMLElement>('#nosotros .card-spotlight:not(#bento-main)').forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 90, rotateX: -20, rotate: i % 2 === 0 ? -3 : 3 },
+        { opacity: 0, y: 50, rotateY: 5, rotateZ: 2 },
         {
-          opacity: 1, y: 0, rotateX: 0, rotate: 0, ease: 'none',
+          opacity: 1,
+          y: 0,
+          rotateY: 0,
+          rotateZ: 0,
+          ease: 'expo.out',
+          duration: 0.7,
+          delay: i * 0.12,
           scrollTrigger: {
-            trigger: card,
-            start: 'top 100%',
-            end: 'center center',
-            scrub: 0.8,
+            trigger: '#nosotros .grid',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
     });
 
-    // ── STACK — snap flip wave (all visible at once → toggle) ─
-    animateHeader('#stack .section-header');
-    gsap.from('#stack .grid > div', {
-      opacity: 0, rotateY: 90, transformPerspective: 800,
-      duration: 0.55, stagger: { each: 0.045, from: 'start' },
-      ease: 'back.out(1.6)', clearProps: 'all',
-      scrollTrigger: { trigger: '#stack .grid', start: 'top 90%', toggleActions: 'play none none none' },
+    // ── STACK — fly in from right edge ───────────────────────
+    gsap.utils.toArray<HTMLElement>('#stack .grid > div').forEach((badge, i) => {
+      gsap.fromTo(badge,
+        { opacity: 0, x: '110%', rotateY: -30 },
+        {
+          opacity: 1,
+          x: '0%',
+          rotateY: 0,
+          ease: 'back.out(1.7)',
+          duration: 0.7,
+          delay: i * 0.04,
+          scrollTrigger: {
+            trigger: '#stack .grid',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
 
-    // ── PROCESO — timeline scrubbed: steps reveal sequentially ─
-    animateHeader('#proceso .section-header');
-    const processTl = gsap.timeline({
+    // ── PROCESO — sequential reveal + glow ──────────────────
+    const procesoTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#proceso .grid',
-        start: 'top 85%',
-        end: 'bottom 20%',
-        scrub: 1,
+        start: 'top 75%',
+        toggleActions: 'play none none none',
       },
     });
+
     gsap.utils.toArray<HTMLElement>('.process-step').forEach((card, i) => {
-      processTl.fromTo(card,
-        { opacity: 0, x: 110, rotateY: -20 },
-        { opacity: 1, x: 0, rotateY: 0, ease: 'none', duration: 1 },
-        i * 0.6
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'expo.out',
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: '#proceso .grid',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
       );
+
       ScrollTrigger.create({
-        trigger: card, start: 'top 80%',
+        trigger: card,
+        start: 'top 78%',
         onEnter: () => {
-          card.style.borderColor = 'rgba(34,197,94,0.28)';
-          card.style.boxShadow   = '0 0 0 1px rgba(34,197,94,0.1), 0 4px 32px rgba(0,0,0,0.32), 0 0 28px rgba(34,197,94,0.07)';
+          gsap.to(card, {
+            borderColor: 'rgba(34,197,94,0.28)',
+            boxShadow: '0 0 0 1px rgba(34,197,94,0.1), 0 4px 32px rgba(0,0,0,0.32), 0 0 28px rgba(34,197,94,0.07)',
+            duration: 0.5,
+            ease: 'power2.out',
+          });
           const num = card.querySelector<HTMLElement>('.step-number');
-          if (num) num.style.color = 'rgba(34,197,94,0.38)';
+          if (num) {
+            gsap.to(num, { color: 'rgba(34,197,94,0.38)', duration: 0.5 });
+          }
         },
       });
     });
 
-    // ── CONTACTO — scrub: section rises from depth ────────────
-    const ctaInner = document.querySelector<HTMLElement>('#contacto .relative.max-w-4xl');
-    if (ctaInner) {
-      gsap.fromTo(ctaInner,
-        { opacity: 0, y: 100, scale: 0.88, rotateX: 18, transformPerspective: 1200 },
-        {
-          opacity: 1, y: 0, scale: 1, rotateX: 0, ease: 'none',
-          scrollTrigger: {
-            trigger: '#contacto',
-            start: 'top 100%',
-            end: 'center center',
-            scrub: 0.9,
-          },
-        }
-      );
-      gsap.from(gsap.utils.toArray<HTMLElement>(ctaInner.children), {
-        opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'all',
-        delay: 0.3,
-        scrollTrigger: { trigger: '#contacto', start: 'top 85%', toggleActions: 'play none none none' },
-      });
-    }
-  });
-
-  // ── Hero parallax — desktop: text tilts back, visual tilts away
-  mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
-    const heroSection = document.querySelector('section');
-    if (!heroSection) return;
-    gsap.to('.hero-parallax-text', {
-      y: -90, rotateX: 8, transformPerspective: 1200, ease: 'none', immediateRender: false,
-      scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: true },
-    });
-    gsap.to('.hero-parallax-visual', {
-      y: 65, rotateY: -8, transformPerspective: 1200, ease: 'none', immediateRender: false,
-      scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: true },
-    });
+    // ── CONTACTO ─────────────────────────────────────────────
+    gsap.fromTo('#contacto .relative.max-w-4xl',
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        ease: 'expo.out',
+        duration: 0.7,
+        scrollTrigger: {
+          trigger: '#contacto',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
   });
 
   // ── Mobile menu ────────────────────────────────────────────
@@ -1148,6 +1203,19 @@ const processSteps = [
     });
   });
 
+  // ── Magnetic button effect on CTA buttons ───────────────────
+  document.querySelectorAll<HTMLElement>('.magnetic-btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.35, y: y * 0.35, duration: 0.3, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+    });
+  });
+
   // ── Hero particle network (Three.js) ──────────────────────
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
@@ -1164,7 +1232,6 @@ const processSteps = [
       const camera = new THREE.PerspectiveCamera(65, W() / H(), 0.1, 50);
       camera.position.z = 5.5;
 
-      // ── Particles ──
       const COUNT = W() < 768 ? 55 : 130;
       const posArr = new Float32Array(COUNT * 3);
       const pData: { x: number; y: number; z: number; vx: number; vy: number; vz: number }[] = [];
@@ -1188,7 +1255,6 @@ const processSteps = [
         new THREE.PointsMaterial({ color: 0x22c55e, size: 0.06, transparent: true, opacity: 0.85, sizeAttenuation: true })
       ));
 
-      // ── Connection lines ──
       const MAX_LINES = 250;
       const lineArr = new Float32Array(MAX_LINES * 6);
       const lineGeo = new THREE.BufferGeometry();
@@ -1199,21 +1265,18 @@ const processSteps = [
         new THREE.LineBasicMaterial({ color: 0x22c55e, transparent: true, opacity: 0.14 })
       ));
 
-      // ── Mouse parallax ──
       let mx = 0, my = 0;
       window.addEventListener('mousemove', (e: MouseEvent) => {
         mx = (e.clientX / W() - 0.5) * 2;
         my = -(e.clientY / H() - 0.5) * 2;
       });
 
-      // ── Resize ──
       window.addEventListener('resize', () => {
         renderer.setSize(W(), H(), false);
         camera.aspect = W() / H();
         camera.updateProjectionMatrix();
       });
 
-      // ── Render loop ──
       const THRESHOLD_SQ = 3.4 * 3.4;
       const docH = () => document.documentElement.scrollHeight - H();
 
