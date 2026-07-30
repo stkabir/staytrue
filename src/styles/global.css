@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Let Lenis own smooth scrolling — disable native */
-html { scroll-behavior: auto; }
+/* Anchor scroll offset so navbar doesn't cover headings */
+html { scroll-padding-top: 80px; }
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
@@ -67,6 +67,15 @@ html { scroll-behavior: auto; }
   --mouse-x: 50%;
   --mouse-y: 50%;
   position: relative;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.section-header > *,
+.process-step,
+#stack .grid > div {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 .card-spotlight::before {
   content: '';
@@ -137,3 +146,12 @@ html { scroll-behavior: auto; }
 /* ─── Process step / number active state (CSS transition) ───── */
 .process-step  { transition: border-color 0.5s ease, box-shadow 0.5s ease; }
 .step-number   { transition: color 0.5s ease; }
+
+/* ─── Word-by-word heading split ─────────────────────────────── */
+.split-word {
+  display: inline-block;
+  transform-origin: 0 100%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+

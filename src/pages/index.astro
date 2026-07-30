@@ -222,17 +222,115 @@ const processSteps = [
 ];
 ---
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Stay True — Estudio de desarrollo digital con sede en Cancún, México. Construimos software web, móvil y de escritorio de alto impacto." />
-  <title>Stay True — Estudio de Desarrollo Digital · Cancún, México</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ── Primary SEO ──────────────────────────────────────────── -->
+  <title>Stay True — Desarrollo Web y Apps a Medida en México</title>
+  <meta name="description" content="Estudio mexicano de desarrollo de software con bases en Xalapa, Veracruz y Cancún, Quintana Roo. Aplicaciones web, apps móviles y software de escritorio a medida en todo México. +7 años de experiencia." />
+  <meta name="keywords" content="desarrollo web México, desarrollo de software Cancún, desarrollo web Xalapa, agencia de software Veracruz, aplicaciones móviles México, software a medida Quintana Roo, desarrollo Laravel, desarrollo Astro, apps móviles React Native, estudio de desarrollo digital" />
+  <meta name="author" content="Stay True Digital Studio" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://staytruemx.com/" />
+  <meta name="theme-color" content="#030704" />
+
+  <!-- ── Geo / local ──────────────────────────────────────────── -->
+  <meta name="geo.region" content="MX" />
+  <meta name="geo.placename" content="Cancún, Quintana Roo; Xalapa, Veracruz" />
+  <meta name="ICBM" content="21.1619, -86.8515" />
+
+  <!-- ── Open Graph ───────────────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stay True Digital Studio" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:url" content="https://staytruemx.com/" />
+  <meta property="og:title" content="Stay True — Desarrollo Web y Apps a Medida en México" />
+  <meta property="og:description" content="Estudio mexicano de desarrollo de software con bases en Xalapa, Veracruz y Cancún, Quintana Roo. Web, apps móviles y software de escritorio a medida en todo México." />
+  <meta property="og:image" content="https://staytruemx.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Stay True — Desarrollo web, apps móviles y software de escritorio a medida en México" />
+
+  <!-- ── Twitter ──────────────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stay True — Desarrollo Web y Apps a Medida en México" />
+  <meta name="twitter:description" content="Web, apps móviles y software de escritorio a medida. Bases en Xalapa, Veracruz y Cancún, Quintana Roo — cobertura en todo México." />
+  <meta name="twitter:image" content="https://staytruemx.com/og-image.jpg" />
+  <meta name="twitter:image:alt" content="Stay True — Desarrollo web, apps y software a medida en México" />
+
+  <!-- ── Performance ──────────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Non-blocking font load (falls back to system-ui until ready) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
+
+  <!-- ── Structured data (JSON-LD) ────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://staytruemx.com/#studio",
+    "name": "Stay True Digital Studio",
+    "url": "https://staytruemx.com/",
+    "image": "https://staytruemx.com/og-image.jpg",
+    "logo": "https://staytruemx.com/apple-touch-icon.png",
+    "description": "Estudio mexicano de desarrollo de software: aplicaciones web, apps móviles y software de escritorio a medida. Bases en Xalapa, Veracruz y Cancún, Quintana Roo.",
+    "email": "kabiralberto10@gmail.com",
+    "telephone": "+52-998-116-9584",
+    "founder": { "@type": "Person", "name": "Kabir Alberto" },
+    "priceRange": "$$",
+    "areaServed": { "@type": "Country", "name": "México" },
+    "knowsLanguage": ["es", "en"],
+    "location": [
+      {
+        "@type": "Place",
+        "name": "Stay True — Cancún",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cancún",
+          "addressRegion": "Quintana Roo",
+          "addressCountry": "MX"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 21.1619, "longitude": -86.8515 }
+      },
+      {
+        "@type": "Place",
+        "name": "Stay True — Xalapa",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Xalapa",
+          "addressRegion": "Veracruz",
+          "addressCountry": "MX"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 19.5438, "longitude": -96.9102 }
+      }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+52-998-116-9584",
+      "email": "kabiralberto10@gmail.com",
+      "contactType": "customer service",
+      "areaServed": "MX",
+      "availableLanguage": ["es", "en"]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de desarrollo",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo Web", "description": "Aplicaciones web, SPAs, SSR, plataformas SaaS, dashboards y e-commerce." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apps Móviles", "description": "Aplicaciones iOS y Android de calidad nativa con React Native." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apps de Escritorio", "description": "Software de escritorio para Windows, macOS y Linux con Tauri y Electron." } }
+      ]
+    }
+  })} />
 </head>
 
 <body class="bg-canvas text-fg font-sans antialiased overflow-x-hidden">
@@ -328,7 +426,8 @@ const processSteps = [
   <!-- ══════════════════════════════════════
        HERO
   ══════════════════════════════════════ -->
-  <section class="relative min-h-screen flex items-center pt-16">
+  <main>
+  <section id="hero" class="relative min-h-screen flex items-center pt-16">
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
     <div class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -337,7 +436,7 @@ const processSteps = [
           <!-- Location badge -->
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase hero-location-badge">
             <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow inline-block"></span>
-            Cancún, México · Web · Móvil · Escritorio
+            Xalapa · Cancún · Todo México
           </div>
 
           <h1 id="hero-headline" class="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-tight leading-[1.04]">
@@ -347,8 +446,9 @@ const processSteps = [
           </h1>
 
           <p class="text-lg md:text-xl text-fg-muted leading-relaxed max-w-lg hero-description">
-            Estudio de desarrollo digital mexicano con más de 7 años de experiencia.
-            Aplicaciones web, apps móviles y software de escritorio — construidos para rendir y escalar.
+            Estudio de desarrollo digital mexicano con más de 7 años de experiencia y bases
+            en Xalapa, Veracruz y Cancún, Quintana Roo. Aplicaciones web, apps móviles y software
+            de escritorio a medida — construidos para rendir y escalar, en todo México.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4 hero-ctas">
@@ -811,7 +911,7 @@ const processSteps = [
         </a>
       </div>
       <p class="mt-6 text-xs text-fg-muted">
-        <span class="text-accent">◆</span>&nbsp; Cancún, México &nbsp;·&nbsp; kabiralberto10@gmail.com &nbsp;·&nbsp; +52 998 116 9584
+        <span class="text-accent">◆</span>&nbsp; Xalapa, Veracruz · Cancún, Quintana Roo &nbsp;·&nbsp; kabiralberto10@gmail.com &nbsp;·&nbsp; +52 998 116 9584
       </p>
     </div>
   </section>
@@ -819,6 +919,8 @@ const processSteps = [
   <!-- ══════════════════════════════════════
        FOOTER
   ══════════════════════════════════════ -->
+  </main>
+
   <footer class="relative border-t border-white/[0.06]" style="background: #010402;">
     <div class="max-w-7xl mx-auto px-6 py-14">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
@@ -834,7 +936,7 @@ const processSteps = [
               stroke="#22c55e" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
-            Cancún, Quintana Roo, México
+            Xalapa, Veracruz · Cancún, Quintana Roo · Todo México
           </p>
         </div>
         <div>
@@ -891,17 +993,53 @@ const processSteps = [
   import * as THREE from 'three';
 
   gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ ease: 'power3.out', overwrite: 'auto' });
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-  // ── Lenis smooth scroll ────────────────────────────────────
-  const lenis = new Lenis({ duration: 1.2 });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis smooth scroll, driven by the GSAP ticker ─────────
+  // One RAF loop for scroll + animation = no competing loops, no jank.
+  let lenis: Lenis | null = null;
+  if (!reduceMotion) {
+    lenis = new Lenis({
+      duration: 1.05,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.6,
+    });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis!.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // ── Split section-header h2 into word spans (preserves <br/>) ─
+  document.querySelectorAll<HTMLElement>('.section-header h2').forEach(h => {
+    Array.from(h.childNodes).forEach(node => {
+      if (node.nodeType !== Node.TEXT_NODE || !node.textContent) return;
+      const frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(part => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          const span = document.createElement('span');
+          span.className = 'split-word';
+          span.textContent = part;
+          frag.appendChild(span);
+        }
+      });
+      node.parentNode!.replaceChild(frag, node);
+    });
+  });
+
+  // ── Refresh after fonts/images settle ─────────────────────
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 
   // ── Scroll progress bar ────────────────────────────────────
   gsap.to('#scroll-progress', {
     scaleX: 1, ease: 'none',
-    scrollTrigger: { start: 'top top', end: 'max', scrub: 0 },
+    scrollTrigger: { start: 'top top', end: 'max', scrub: true },
   });
 
   // ── Navbar scrolled state (CSS class toggle) ─────────────
@@ -915,251 +1053,126 @@ const processSteps = [
     },
   });
 
-  // ── Scroll animations (reduced-motion aware) ──────────────
+  // ── Scroll animations (matchMedia split) ──────────────────
   const mm = gsap.matchMedia();
 
+  // ═══════════════ HERO ENTRANCE + COUNTERS ═══════════════
+  // (any viewport, motion-OK)
   mm.add('(prefers-reduced-motion: no-preference)', () => {
-
-    // ── HERO ENTRANCE ─────────────────────────────────────────
     const heroTl = gsap.timeline({ delay: 0.15 });
 
     heroTl.from('.hero-location-badge', {
-      opacity: 0, y: 16, duration: 0.5, ease: 'power3.out',
+      opacity: 0, y: 16, duration: 0.5,
     });
 
     heroTl.from('#hero-headline span', {
       clipPath: 'inset(0 100% 0 0)',
-      opacity: 0,
-      y: 40,
-      rotateX: -25,
-      transformPerspective: 900,
-      transformOrigin: 'left center',
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'expo.out',
+      opacity: 0, y: 40, rotateX: -25,
+      transformPerspective: 900, transformOrigin: 'left center',
+      duration: 0.8, stagger: 0.2, ease: 'expo.out',
     }, 0.1);
 
-    heroTl.from('.hero-description', {
-      opacity: 0, y: 30, duration: 0.6, ease: 'power3.out',
-    }, 0.55);
-
-    heroTl.from('.hero-ctas > *', {
-      opacity: 0, y: 20, duration: 0.5, stagger: 0.1, ease: 'power3.out',
-    }, 0.7);
-
+    heroTl.from('.hero-description', { opacity: 0, y: 30, duration: 0.6 }, 0.55);
+    heroTl.from('.hero-ctas > *',     { opacity: 0, y: 20, duration: 0.5, stagger: 0.1 }, 0.7);
     heroTl.from('.hero-parallax-visual', {
       opacity: 0, x: 72, rotateY: 12, transformPerspective: 1400,
       duration: 1.15, ease: 'expo.out',
     }, 0.2);
+    heroTl.from('.hero-stats', { opacity: 0, y: 16, duration: 0.5 }, 0.8);
 
-    heroTl.from('.hero-stats', {
-      opacity: 0, y: 16, duration: 0.5, ease: 'power3.out',
-    }, 0.8);
-
-    // ── STATS COUNTERS (scroll-triggered) ─────────────────────
+    // STATS COUNTERS
     document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el => {
       const target = parseInt(el.dataset.counter || '0', 10);
       const prefix = el.dataset.prefix || '';
       el.textContent = prefix + '0';
       const obj = { val: 0 };
       ScrollTrigger.create({
-        trigger: el,
-        start: 'top 88%',
+        trigger: el, start: 'top 88%',
         onEnter: () => {
           gsap.to(obj, {
-            val: target,
-            duration: 2,
-            ease: 'power2.out',
-            onUpdate: () => {
-              el.textContent = prefix + Math.round(obj.val);
-            },
+            val: target, duration: 2, ease: 'power2.out',
+            onUpdate: () => { el.textContent = prefix + Math.round(obj.val); },
           });
         },
       });
     });
+  });
 
-    // ── SECTION HEADERS (shared helper) ───────────────────────
-    gsap.utils.toArray<HTMLElement>('.section-header').forEach((header, i) => {
-      const children = header.children;
-      gsap.fromTo(children,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
+  // ═══════════════ FLUID REVEALS (all viewports) ═══════════════
+  // No pinning: every section reveals once on enter. Short page,
+  // natural scroll speed, buttery — no forced 13× scroll length.
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const desktop = window.innerWidth >= 768;
 
-    // ── SERVICIOS ─────────────────────────────────────────────
-    gsap.utils.toArray<HTMLElement>('#servicios .card-spotlight').forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: 'expo.out',
-          duration: 0.8,
-          delay: i * 0.15,
-          scrollTrigger: {
-            trigger: '#servicios .grid',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-
-    // ── PROYECTOS — by row (3 cards per row) ─────────────────
-    const projectCards = gsap.utils.toArray<HTMLElement>('#proyectos .card-spotlight');
-    const rowSize = 3;
-    const rowTriggers = ['top 80%', 'top 70%', 'top 60%', 'top 50%'];
-
-    for (let row = 0; row < Math.ceil(projectCards.length / rowSize); row++) {
-      const rowCards = projectCards.slice(row * rowSize, (row + 1) * rowSize);
-      const triggerPos = rowTriggers[row] || 'top 45%';
-
-      gsap.fromTo(rowCards,
-        { opacity: 0, y: 80 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: 'expo.out',
-          duration: 0.8,
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: '#proyectos .grid',
-            start: triggerPos,
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+    // ── Hero parallax (desktop only): subtle drift, NO pin ─────
+    if (desktop) {
+      gsap.to('.hero-parallax-text', {
+        y: -70, opacity: 0.4, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 },
+      });
+      gsap.to('.hero-parallax-visual', {
+        y: -110, rotateY: -4, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 },
+      });
     }
 
-    // ── BENTO MAIN — 3D flip horizontal ─────────────────────
-    gsap.fromTo('#bento-main',
-      { opacity: 0, scale: 0.85, rotateY: 8, filter: 'blur(12px)' },
-      {
-        opacity: 1,
-        scale: 1,
-        rotateY: 0,
-        filter: 'blur(0px)',
-        ease: 'expo.out',
-        duration: 1.0,
-        scrollTrigger: {
-          trigger: '#bento-main',
-          start: 'top 70%',
-          toggleActions: 'play none none none',
-        },
+    // ── Section headers: meta + word-by-word reveal ────────────
+    gsap.utils.toArray<HTMLElement>('.section-header').forEach(header => {
+      const words = header.querySelectorAll('h2 .split-word');
+      const meta  = Array.from(header.children).filter(c => c.tagName !== 'H2');
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: header, start: 'top 85%', once: true },
+      });
+      tl.from(meta, { opacity: 0, y: 22, duration: 0.5, stagger: 0.07 });
+      if (words.length) {
+        tl.from(words, {
+          opacity: 0, y: 26, rotateX: desktop ? -35 : 0, transformPerspective: 800,
+          duration: 0.6, stagger: 0.035, ease: 'expo.out',
+        }, 0.15);
       }
-    );
-
-    // ── FEATURE CARDS — 3D tilt ──────────────────────────────
-    gsap.utils.toArray<HTMLElement>('#nosotros .card-spotlight:not(#bento-main)').forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 50, rotateY: 5, rotateZ: 2 },
-        {
-          opacity: 1,
-          y: 0,
-          rotateY: 0,
-          rotateZ: 0,
-          ease: 'expo.out',
-          duration: 0.7,
-          delay: i * 0.12,
-          scrollTrigger: {
-            trigger: '#nosotros .grid',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
     });
 
-    // ── STACK — fly in from right edge ───────────────────────
-    gsap.utils.toArray<HTMLElement>('#stack .grid > div').forEach((badge, i) => {
-      gsap.fromTo(badge,
-        { opacity: 0, x: '110%', rotateY: -30 },
-        {
-          opacity: 1,
-          x: '0%',
-          rotateY: 0,
-          ease: 'back.out(1.7)',
-          duration: 0.7,
-          delay: i * 0.04,
-          scrollTrigger: {
-            trigger: '#stack .grid',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
+    // ── Batched card reveal helper (one observer per group) ────
+    const reveal = (selector: string, from: gsap.TweenVars, stagger = 0.09) => {
+      const els = gsap.utils.toArray<HTMLElement>(selector);
+      if (!els.length) return;
+      gsap.set(els, from);
+      ScrollTrigger.batch(els, {
+        start: 'top 88%', once: true,
+        onEnter: (batch) => gsap.to(batch, {
+          opacity: 1, x: 0, y: 0, scale: 1, rotateX: 0, rotateY: 0,
+          duration: 0.7, ease: 'power3.out', stagger, overwrite: true,
+          onComplete: () => batch.forEach(el => { (el as HTMLElement).style.willChange = 'auto'; }),
+        }),
+      });
+    };
 
-    // ── PROCESO — sequential reveal + glow ──────────────────
-    const procesoTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#proceso .grid',
-        start: 'top 75%',
-        toggleActions: 'play none none none',
-      },
-    });
+    reveal('#servicios .card-spotlight',                 { opacity: 0, y: 56, rotateX: desktop ? -12 : 0, transformPerspective: 1000 });
+    reveal('#proyectos .card-spotlight',                 { opacity: 0, y: 48, scale: 0.97 }, 0.06);
+    reveal('#nosotros .card-spotlight:not(#bento-main)', { opacity: 0, y: 44, rotateY: desktop ? 5 : 0 });
+    reveal('#bento-main',                                { opacity: 0, y: 40, scale: 0.94 });
+    reveal('#stack .grid > div',                         { opacity: 0, y: 28, scale: 0.9 }, 0.05);
 
-    gsap.utils.toArray<HTMLElement>('.process-step').forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: 'expo.out',
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: '#proceso .grid',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
+    // ── Proceso: reveal + sequential active glow ───────────────
+    gsap.utils.toArray<HTMLElement>('.process-step').forEach((step, i) => {
+      gsap.set(step, { opacity: 0, y: 40, scale: 0.97 });
       ScrollTrigger.create({
-        trigger: card,
-        start: 'top 78%',
+        trigger: step, start: 'top 85%', once: true,
         onEnter: () => {
-          gsap.to(card, {
-            borderColor: 'rgba(34,197,94,0.28)',
-            boxShadow: '0 0 0 1px rgba(34,197,94,0.1), 0 4px 32px rgba(0,0,0,0.32), 0 0 28px rgba(34,197,94,0.07)',
-            duration: 0.5,
-            ease: 'power2.out',
+          gsap.to(step, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', delay: i * 0.05 });
+          gsap.to(step, {
+            borderColor: 'rgba(34,197,94,0.3)',
+            boxShadow: '0 0 0 1px rgba(34,197,94,0.12), 0 4px 32px rgba(0,0,0,0.32), 0 0 32px rgba(34,197,94,0.1)',
+            duration: 0.5, delay: 0.3 + i * 0.05,
           });
-          const num = card.querySelector<HTMLElement>('.step-number');
-          if (num) {
-            gsap.to(num, { color: 'rgba(34,197,94,0.38)', duration: 0.5 });
-          }
+          const num = step.querySelector<HTMLElement>('.step-number');
+          if (num) gsap.to(num, { color: 'rgba(34,197,94,0.4)', duration: 0.5, delay: 0.3 + i * 0.05 });
         },
       });
     });
 
-    // ── CONTACTO ─────────────────────────────────────────────
-    gsap.fromTo('#contacto .relative.max-w-4xl',
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        ease: 'expo.out',
-        duration: 0.7,
-        scrollTrigger: {
-          trigger: '#contacto',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
+    // ── Contacto climax ───────────────────────────────────────
+    reveal('#contacto .relative.max-w-4xl', { opacity: 0, y: 48, scale: 0.96 });
   });
 
   // ── Mobile menu ────────────────────────────────────────────
@@ -1190,16 +1203,16 @@ const processSteps = [
     });
   });
 
-  // ── Anchor scroll via Lenis ────────────────────────────────
+  // ── Anchor scroll (Lenis-aware) ────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
       const target = document.querySelector<HTMLElement>(href);
-      if (target) {
-        e.preventDefault();
-        lenis.scrollTo(target, { offset: -64 });
-      }
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -72, duration: 1.1 });
+      else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
@@ -1280,8 +1293,21 @@ const processSteps = [
       const THRESHOLD_SQ = 3.4 * 3.4;
       const docH = () => document.documentElement.scrollHeight - H();
 
+      // ── Only render while hero is on-screen and tab is visible ─
+      // (particle sim + line rebuild is the heaviest per-frame cost;
+      //  pausing it once scrolled past frees the main thread for scroll)
+      let heroVisible = true;
+      let running = true;
+      const syncRunning = () => { running = heroVisible && !document.hidden; };
+      new IntersectionObserver(([entry]) => {
+        heroVisible = entry.isIntersecting;
+        syncRunning();
+      }, { threshold: 0 }).observe(canvas);
+      document.addEventListener('visibilitychange', syncRunning);
+
       ;(function tick() {
         requestAnimationFrame(tick);
+        if (!running) return;
 
         for (let i = 0; i < COUNT; i++) {
           const d = pData[i];

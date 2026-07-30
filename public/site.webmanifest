@@ -1,0 +1,14 @@
+{
+  "name": "Stay True Digital Studio",
+  "short_name": "Stay True",
+  "description": "Desarrollo web, apps móviles y software de escritorio a medida en México.",
+  "lang": "es-MX",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030704",
+  "theme_color": "#030704",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}
