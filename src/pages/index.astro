@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 
+const WHATSAPP = "https://wa.me/529981169584?text=Hola%20Stay%20True%2C%20quiero%20cotizar%20un%20proyecto";
+const EMAIL    = "hola@staytruemx.com";
+
 const services = [
   {
     title: "Desarrollo Web",
@@ -37,12 +40,164 @@ const services = [
   },
 ];
 
+// ── Featured work: the pinned horizontal "cinema" ──────────────
+// Every `metric` here is a verifiable fact about the build, not a
+// claimed business outcome we can't back up.
+const featured = [
+  {
+    name: "Cluby",
+    kind: "Marketplace",
+    year: "2022 — hoy",
+    img: "/img/projects/cluby.webp",
+    url: "https://cluby.mx",
+    description:
+      "Marketplace completo para artículos deportivos personalizados. Pasarela de pago, tres dashboards diferenciados por rol, integración con Google Maps y SEO técnico.",
+    metric: "+2 años en producción",
+    stack: ["Laravel", "PHP", "MySQL", "REST API", "Google Maps"],
+    accent: "#84cc16",
+  },
+  {
+    name: "Agua Coecytjal",
+    kind: "Gobierno de Jalisco",
+    year: "2023",
+    img: "/img/projects/coecytjal.webp",
+    url: "https://l.coecytjal.org.mx",
+    description:
+      "Sistema estatal de monitoreo de calidad del agua. Captura de muestreos, estadísticas comparativas entre periodos y generación de reportes para toma de decisiones públicas.",
+    metric: "+50 cuerpos de agua monitoreados",
+    stack: ["Laravel", "PHP", "MySQL"],
+    accent: "#38bdf8",
+  },
+  {
+    name: "El Dorado Spa Resorts",
+    kind: "Hotelería de lujo",
+    year: "2021",
+    img: "/img/projects/el-dorado.webp",
+    url: "https://www.eldoradosparesorts.com.mx/destino",
+    description:
+      "Plataforma para cadena de resorts todo incluido en la Riviera Maya. Explorador de destinos con mapa interactivo, módulos de actividades y flujo de reserva en línea.",
+    metric: "Mapa interactivo de destinos",
+    stack: ["React", "Laravel"],
+    accent: "#22c55e",
+  },
+  {
+    name: "Maroma Beach",
+    kind: "Club de playa",
+    year: "2021",
+    img: "/img/projects/maroma-beach.webp",
+    url: "https://maromabeach.com/es/",
+    description:
+      "Sitio multiidioma para club de playa en la Riviera Maya. Buscador de disponibilidad con fechas y ocupantes, catálogo de experiencias y galería multimedia optimizada.",
+    metric: "Reservas con buscador en vivo",
+    stack: ["React", "Laravel"],
+    accent: "#10b981",
+  },
+  {
+    name: "Brickell News",
+    kind: "Portal editorial",
+    year: "2024",
+    img: "/img/projects/brickell-news.webp",
+    url: "https://brickell.news",
+    description:
+      "Portal de noticias con gestor de contenidos propio, portadas dinámicas por sección y SEO técnico avanzado. Arquitectura pensada para publicar decenas de notas al día.",
+    metric: "CMS propio + SEO técnico",
+    stack: ["Laravel", "Astro.js"],
+    accent: "#4ade80",
+  },
+  {
+    name: "Verde Caribe",
+    kind: "Sitio corporativo",
+    year: "2025",
+    img: "/img/projects/verde-caribe.webp",
+    url: "https://verdecaribe.com",
+    description:
+      "Arquitectura desacoplada Astro.js + Laravel vía API REST para empresa de paisajismo. HTML estático servido al usuario, panel dinámico para el cliente.",
+    metric: "Arquitectura desacoplada",
+    stack: ["Astro.js", "Laravel", "MySQL", "REST API"],
+    accent: "#6ee7b7",
+  },
+];
+
+// ── Remaining work: compact grid, no screenshots ───────────────
+// Some are private internal systems; others are client-side sites
+// we no longer control. We don't fake previews for either.
+const moreProjects = [
+  {
+    name: "Dashboard Ohana",
+    description: "Panel operativo para empresa de transfers turísticos: asignación de choferes, monitoreo de rutas y gestión en tiempo real.",
+    stack: ["Laravel", "Livewire", "MySQL"],
+    url: "https://ohanatransfers.com",
+    note: null,
+    accent: "#6ee7b7",
+  },
+  {
+    name: "México Me Necesita",
+    description: "Plataforma institucional con autenticación, roles y permisos granulares para múltiples tipos de usuario.",
+    stack: ["PHP", "MySQL"],
+    url: "https://mmn.org.mx",
+    note: null,
+    accent: "#10b981",
+  },
+  {
+    name: "Cotizador de Crédito",
+    description: "Simulador financiero interactivo con cálculo de mensualidades en tiempo real y UX optimizada para conversión.",
+    stack: ["Astro.js", "React"],
+    url: "https://simulador-credito-ulises.netlify.app",
+    note: null,
+    accent: "#4ade80",
+  },
+  {
+    name: "Mujeres Rurales",
+    description: "Sistema de otorgamiento de créditos para el Gobierno de la Ciudad de México. Flujos de validación por etapas y roles granulares de acceso.",
+    stack: ["Laravel", "Livewire", "MySQL"],
+    url: null,
+    note: "Sistema interno de gobierno",
+    accent: "#a78bfa",
+  },
+  {
+    name: "Lomas Travel",
+    description: "Sistema web para agencia de viajes: gestión de reservas, catálogo de destinos y panel administrativo completo.",
+    stack: ["Laravel", "MySQL"],
+    url: "https://lomastravel.com",
+    note: "Operado por el cliente",
+    accent: "#fb923c",
+  },
+  {
+    name: "Azzure Condos",
+    description: "Landing page estática de alta performance para desarrollo inmobiliario de lujo en la Riviera Maya.",
+    stack: ["Astro.js"],
+    url: "https://azzurecondos.com",
+    note: "Operado por el cliente",
+    accent: "#84cc16",
+  },
+];
+
+// Names only — every one of these appears in the work above.
+const clients = [
+  "Gobierno de Jalisco",
+  "Gobierno de CDMX",
+  "El Dorado Spa Resorts",
+  "Maroma Beach",
+  "Lomas Travel",
+  "Cluby",
+  "Ohana Transfers",
+  "Brickell News",
+  "México Me Necesita",
+  "Verde Caribe",
+];
+
+const metrics = [
+  { value: 7,  suffix: "+",  label: "Años construyendo software",     sub: "Desde 2018" },
+  { value: 12, suffix: "",   label: "Proyectos en producción",        sub: "No prototipos" },
+  { value: 2,  suffix: "",   label: "Gobiernos como cliente",         sub: "Jalisco y CDMX" },
+  { value: 3,  suffix: "",   label: "Plataformas que cubrimos",       sub: "Web, móvil y escritorio" },
+];
+
 const bentoFeatures = [
   {
     label: "ENTREGA",
     title: "En tiempo, siempre",
     desc: "Sprints ágiles, hitos claros, cero sorpresas. Entregamos cuando prometemos.",
-    span: "md:col-span-2",
     accent: "#10b981",
     accentBg: "rgba(16,185,129,0.15)",
     accentBorder: "rgba(16,185,129,0.25)",
@@ -52,7 +207,6 @@ const bentoFeatures = [
     label: "TRANSPARENCIA",
     title: "Apertura total",
     desc: "Visibilidad completa en cada sprint. Actualizaciones en tiempo real, comunicación abierta.",
-    span: "md:col-span-2",
     accent: "#84cc16",
     accentBg: "rgba(132,204,22,0.15)",
     accentBorder: "rgba(132,204,22,0.25)",
@@ -62,7 +216,6 @@ const bentoFeatures = [
     label: "EXPERIENCIA",
     title: "Dominio fullstack",
     desc: "Del frontend a la base de datos, DevOps a sistemas de diseño — manejamos el stack completo.",
-    span: "md:col-span-3",
     accent: "#22c55e",
     accentBg: "rgba(34,197,94,0.15)",
     accentBorder: "rgba(34,197,94,0.25)",
@@ -72,7 +225,6 @@ const bentoFeatures = [
     label: "ESCALABILIDAD",
     title: "Construido para crecer",
     desc: "De 100 a 1,000,000 usuarios sin reescrituras dolorosas. Arquitectura escalable desde el día uno.",
-    span: "md:col-span-3",
     accent: "#6ee7b7",
     accentBg: "rgba(110,231,183,0.15)",
     accentBorder: "rgba(110,231,183,0.25)",
@@ -93,105 +245,6 @@ const techStack = [
   { name: "API REST",        color: "#22c55e" },
   { name: "Tailwind CSS",    color: "#22d3ee" },
   { name: "Dokploy / CI/CD", color: "#84cc16" },
-];
-
-const projects = [
-  {
-    name: "Verde Caribe",
-    description: "Plataforma web para empresa de paisajismo y construcción. Arquitectura desacoplada: Astro.js + Laravel con API REST. Tiempos de carga ~60% más rápidos que SPAs tradicionales.",
-    stack: ["Astro.js", "Laravel", "MySQL", "REST API"],
-    url: "https://verdecaribe.com",
-    isActive: true,
-    accent: "#22c55e",
-  },
-  {
-    name: "Brickell News",
-    description: "Portal de noticias con sistema de contenidos dinámico, SEO técnico avanzado y carga ultrarrápida.",
-    stack: ["Laravel", "Astro.js"],
-    url: "https://brickell.news",
-    isActive: true,
-    accent: "#4ade80",
-  },
-  {
-    name: "Cluby",
-    description: "Marketplace completo con pasarela de pago, 3 dashboards por rol, Google Maps API y SEO — activo en producción más de 2 años con múltiples vendedores.",
-    stack: ["Laravel", "PHP", "MySQL", "REST API", "Google Maps"],
-    url: "https://cluby.mx",
-    isActive: true,
-    accent: "#10b981",
-  },
-  {
-    name: "Maroma Beach",
-    description: "Sitio web para resort de lujo en la Riviera Maya con galería multimedia y sistema de reservas.",
-    stack: ["React", "Laravel"],
-    url: "https://maromabeach.com/es/",
-    isActive: true,
-    accent: "#84cc16",
-  },
-  {
-    name: "El Dorado Resort",
-    description: "Plataforma web para resort todo incluido en la Riviera Maya. Módulos de destinos, actividades y reservas en línea.",
-    stack: ["React", "Laravel"],
-    url: "https://www.eldoradosparesorts.com.mx/destino",
-    isActive: true,
-    accent: "#22c55e",
-  },
-  {
-    name: "Dashboard Ohana",
-    description: "Panel administrativo para empresa de transfers turísticos: asignación de choferes, monitoreo de rutas y gestión operativa en tiempo real.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    url: "https://ohanatransfers.com",
-    isActive: true,
-    accent: "#6ee7b7",
-  },
-  {
-    name: "Agua Coecytjal",
-    description: "Sistema gubernamental de monitoreo de calidad del agua para el Gobierno de Jalisco: +50 cuerpos de agua, estadísticas comparativas y reportes.",
-    stack: ["Laravel", "PHP", "MySQL"],
-    url: "https://l.coecytjal.org.mx",
-    isActive: true,
-    accent: "#38bdf8",
-  },
-  {
-    name: "Mujeres Rurales",
-    description: "Sistema de otorgamiento de créditos para el Gobierno de CDMX. Flujos complejos de validación y roles granulares de acceso.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    url: "https://cdmx.gob.mx",
-    isActive: false,
-    accent: "#a78bfa",
-  },
-  {
-    name: "Lomas Travel",
-    description: "Sistema web para agencia de viajes: gestión de reservas, catálogos de destinos y panel administrativo completo.",
-    stack: ["Laravel", "MySQL"],
-    url: "https://lomastravel.com",
-    isActive: true,
-    accent: "#fb923c",
-  },
-  {
-    name: "Azzure Condos",
-    description: "Landing page estática de alta performance para desarrollo inmobiliario de lujo en la Riviera Maya.",
-    stack: ["Astro.js"],
-    url: "https://azzurecondos.com",
-    isActive: true,
-    accent: "#84cc16",
-  },
-  {
-    name: "Cotizador Crédito",
-    description: "Simulador interactivo de crédito financiero con cálculos en tiempo real y UX optimizada para conversión.",
-    stack: ["Astro.js", "React"],
-    url: "https://simulador-credito-ulises.netlify.app",
-    isActive: true,
-    accent: "#4ade80",
-  },
-  {
-    name: "México Me Necesita",
-    description: "Plataforma institucional con sistema de autenticación, roles y permisos granulares para múltiples tipos de usuario.",
-    stack: ["PHP", "MySQL"],
-    url: "https://mmn.org.mx",
-    isActive: true,
-    accent: "#10b981",
-  },
 ];
 
 const processSteps = [
@@ -220,6 +273,41 @@ const processSteps = [
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
   },
 ];
+
+const faqs = [
+  {
+    q: "¿Cuánto cuesta un proyecto?",
+    a: "Depende del alcance, pero trabajamos con presupuesto cerrado: después de la sesión de descubrimiento te entregamos una cotización con precio y fecha en firme. Sin tarifas por hora que se disparan, sin cargos sorpresa a mitad del proyecto.",
+  },
+  {
+    q: "¿Cuánto tiempo toma?",
+    a: "Una landing page de alto rendimiento suele tomar de 2 a 3 semanas. Una plataforma a medida con panel administrativo, de 6 a 12 semanas. En la primera llamada te damos un rango realista — no una promesa que no podamos cumplir.",
+  },
+  {
+    q: "¿Trabajan con empresas fuera de Cancún y Xalapa?",
+    a: "Sí. Operamos en remoto con clientes en todo México y hemos entregado proyectos para gobiernos estatales, hoteles de la Riviera Maya y empresas de otros estados. Las reuniones son por videollamada y el avance está siempre visible.",
+  },
+  {
+    q: "¿Puedo ver el avance durante el desarrollo?",
+    a: "Siempre. Trabajamos en sprints con demos semanales sobre un ambiente de pruebas real al que tienes acceso desde el día uno. Nada de cajas negras ni de un único entregable al final.",
+  },
+  {
+    q: "¿El código es mío al terminar?",
+    a: "Sí, el código y la propiedad intelectual son tuyos. Te entregamos el repositorio, la documentación y los accesos de infraestructura. No secuestramos proyectos ni te atamos a nosotros para poder mantenerlo.",
+  },
+  {
+    q: "¿Qué pasa después del lanzamiento?",
+    a: "Incluimos un periodo de garantía para corregir cualquier defecto sin costo. Después puedes contratar soporte y evolución continua, o llevarlo con tu propio equipo — para eso entregamos el código documentado.",
+  },
+];
+
+const navItems = [
+  ["Servicios",  "servicios"],
+  ["Proyectos",  "proyectos"],
+  ["Proceso",    "proceso"],
+  ["Preguntas",  "faq"],
+  ["Contacto",   "contacto"],
+] as const;
 ---
 <!doctype html>
 <html lang="es-MX">
@@ -283,7 +371,7 @@ const processSteps = [
     "image": "https://staytruemx.com/og-image.jpg",
     "logo": "https://staytruemx.com/apple-touch-icon.png",
     "description": "Estudio mexicano de desarrollo de software: aplicaciones web, apps móviles y software de escritorio a medida. Bases en Xalapa, Veracruz y Cancún, Quintana Roo.",
-    "email": "kabiralberto10@gmail.com",
+    "email": "hola@staytruemx.com",
     "telephone": "+52-998-116-9584",
     "founder": { "@type": "Person", "name": "Kabir Alberto" },
     "priceRange": "$$",
@@ -316,7 +404,7 @@ const processSteps = [
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+52-998-116-9584",
-      "email": "kabiralberto10@gmail.com",
+      "email": "hola@staytruemx.com",
       "contactType": "customer service",
       "areaServed": "MX",
       "availableLanguage": ["es", "en"]
@@ -331,11 +419,26 @@ const processSteps = [
       ]
     }
   })} />
+
+  <!-- FAQ rich results -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  })} />
 </head>
 
 <body class="bg-canvas text-fg font-sans antialiased overflow-x-hidden">
 
-  <div id="scroll-progress" aria-hidden="true"></div>
+  <div id="scroll-progress"></div>
+
+  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-accent focus:text-white">
+    Saltar al contenido
+  </a>
 
   <!-- ══════════════════════════════════════
        LAYERED BACKGROUND SYSTEM
@@ -348,13 +451,13 @@ const processSteps = [
       style="background-image: radial-gradient(rgba(255,255,255,0.55) 1px, transparent 1px);
              background-size: 32px 32px;">
     </div>
-    <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] rounded-full animate-blob"
+    <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] rounded-full"
       style="background: radial-gradient(ellipse, rgba(34,197,94,0.13) 0%, transparent 70%); filter: blur(90px);">
     </div>
-    <div class="absolute top-1/3 -left-48 w-[600px] h-[500px] rounded-full animate-blob-2"
+    <div class="absolute top-1/3 -left-48 w-[600px] h-[500px] rounded-full"
       style="background: radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%); filter: blur(110px);">
     </div>
-    <div class="absolute top-1/2 -right-48 w-[550px] h-[650px] rounded-full animate-blob-3"
+    <div class="absolute top-1/2 -right-48 w-[550px] h-[650px] rounded-full"
       style="background: radial-gradient(ellipse, rgba(132,204,22,0.06) 0%, transparent 70%); filter: blur(120px);">
     </div>
   </div>
@@ -366,33 +469,32 @@ const processSteps = [
     <div class="absolute inset-0 bg-canvas/80 backdrop-blur-xl"></div>
     <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
-      <a href="/" class="flex items-center gap-3">
-        <img src="/img/logo.svg" alt="Stay True logo" class="h-8 w-8" />
+      <a href="/" class="flex items-center gap-3" aria-label="Stay True — inicio">
+        <img src="/img/logo.svg" alt="Stay True logo" class="h-8 w-8" width="32" height="32" />
       </a>
 
       <div class="hidden md:flex items-center gap-8">
-        {(["Servicios", "Proyectos", "Proceso", "Contacto"] as const).map((item, i) => {
-          const ids = ["servicios", "proyectos", "proceso", "contacto"];
-          return (
-            <a href={`#${ids[i]}`}
-              class="text-sm text-fg-muted hover:text-fg transition-colors duration-200">
-              {item}
-            </a>
-          );
-        })}
+        {navItems.map(([label, id]) => (
+          <a href={`#${id}`} class="text-sm text-fg-muted hover:text-fg transition-colors duration-200">
+            {label}
+          </a>
+        ))}
       </div>
 
       <div class="flex items-center gap-3">
+        <!-- Kept visible on mobile too: a portfolio site's whole job is
+             getting the visitor to start a conversation. -->
         <a href="#contacto"
-          class="magnetic-btn hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          class="magnetic-btn inline-flex items-center gap-1.5 px-3.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 4px 16px rgba(34,197,94,0.28), inset 0 1px 0 rgba(255,255,255,0.14);">
           Hablemos
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+          <svg class="hidden md:block" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
         </a>
-        <button id="menu-toggle" class="md:hidden p-2 text-fg-muted hover:text-fg transition-colors" aria-label="Abrir menú">
+        <button id="menu-toggle" class="md:hidden p-2 text-fg-muted hover:text-fg transition-colors"
+          aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
           <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -408,14 +510,14 @@ const processSteps = [
     <div id="mobile-menu" class="hidden md:hidden relative border-t border-white/[0.06]">
       <div class="absolute inset-0 bg-canvas/95 backdrop-blur-xl"></div>
       <div class="relative px-6 py-6 flex flex-col gap-1">
-        {([["Servicios","servicios"],["Proyectos","proyectos"],["Proceso","proceso"],["Contacto","contacto"]] as const).map(([label, id]) => (
+        {navItems.map(([label, id]) => (
           <a href={`#${id}`}
             class="mobile-nav-link py-3 text-fg-muted hover:text-fg transition-colors border-b border-white/[0.04] last:border-0">
             {label}
           </a>
         ))}
         <a href="#contacto"
-          class="mobile-nav-link magnetic-btn mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
+          class="mobile-nav-link mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.4), 0 4px 14px rgba(34,197,94,0.25);">
           Hablemos
         </a>
@@ -423,17 +525,17 @@ const processSteps = [
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════
-       HERO
-  ══════════════════════════════════════ -->
   <main>
+
+  <!-- ══════════════════════════════════════
+       1 · HOOK — HERO
+  ══════════════════════════════════════ -->
   <section id="hero" class="relative min-h-screen flex items-center pt-16">
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
     <div class="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
 
         <div class="space-y-8 hero-parallax-text">
-          <!-- Location badge -->
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase hero-location-badge">
             <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow inline-block"></span>
             Xalapa · Cancún · Todo México
@@ -579,14 +681,42 @@ const processSteps = [
 
       </div>
     </div>
+
+    <!-- Scroll cue -->
+    <div id="scroll-cue" class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 pointer-events-none">
+      <span class="text-[10px] font-mono tracking-[0.2em] uppercase text-fg-muted">Scroll</span>
+      <span class="block w-px h-10 overflow-hidden" style="background: rgba(255,255,255,0.12);">
+        <span id="scroll-cue-fill" class="block w-full h-1/2 bg-accent"></span>
+      </span>
+    </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
+  <!-- ══════════════════════════════════════
+       2 · TRUST — QUIÉN YA CONFIÓ
+  ══════════════════════════════════════ -->
+  <section class="relative py-12 border-y border-white/[0.06] bg-canvas-deep/40">
+    <p class="text-center text-[10px] font-mono tracking-[0.25em] uppercase text-fg-muted mb-8 px-6">
+      Software entregado para
+    </p>
+    <div class="marquee relative overflow-hidden">
+      <div class="marquee-track" aria-hidden="true">
+        {[0, 1].map(() => (
+          <div class="flex items-center shrink-0">
+            {clients.map(name => (
+              <span class="px-8 text-lg md:text-xl font-medium text-fg-muted/70 whitespace-nowrap">
+                {name}
+                <span class="ml-8 text-accent/30">◆</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+    <p class="sr-only">Clientes: {clients.join(", ")}.</p>
+  </section>
 
   <!-- ══════════════════════════════════════
-       SERVICIOS
+       3 · CONTEXT — SERVICIOS
   ══════════════════════════════════════ -->
   <section id="servicios" class="relative py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-6">
@@ -635,17 +765,15 @@ const processSteps = [
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
-
   <!-- ══════════════════════════════════════
-       PROYECTOS (WORK)
+       4 · JOURNEY — CINEMA DE PROYECTOS
+       Signature moment: pinned horizontal scroll (lg+),
+       native swipe-snap on touch.
   ══════════════════════════════════════ -->
-  <section id="proyectos" class="relative py-24 lg:py-32">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="proyectos" class="relative">
 
-      <div class="max-w-2xl mb-16 section-header">
+    <div class="max-w-7xl mx-auto px-6 pt-24 lg:pt-32 pb-12">
+      <div class="max-w-2xl section-header">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
           Proyectos reales
         </div>
@@ -653,66 +781,188 @@ const processSteps = [
           Trabajo entregado<br/>en producción.
         </h2>
         <p class="text-lg text-fg-muted leading-relaxed">
-          Desde plataformas gubernamentales hasta marketplaces y resorts de lujo —
-          proyectos que siguen corriendo y generando valor para nuestros clientes.
+          Cada captura es el sitio real, en vivo, hoy. Desde sistemas de gobierno hasta
+          marketplaces y resorts de lujo — proyectos que siguen corriendo y generando valor.
         </p>
       </div>
+    </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map(p => (
-          <a
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group card-spotlight rounded-2xl p-5 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1"
-            style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
-                   border: 1px solid rgba(255,255,255,0.07);
-                   box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
-          >
-            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={`background: radial-gradient(ellipse at 0% 0%, ${p.accent}0d 0%, transparent 60%);`}>
-            </div>
+    <div id="cinema" class="relative lg:h-screen lg:flex lg:flex-col lg:justify-center overflow-hidden pb-8 lg:pb-0 lg:pt-16">
 
-            <!-- Header row -->
-            <div class="flex items-start justify-between gap-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-2 h-2 rounded-full flex-shrink-0 animate-pulse-glow"
-                  style={`background: ${p.isActive ? p.accent : 'rgba(255,255,255,0.2)'};`}>
+      <!-- Desktop progress rail -->
+      <div class="hidden lg:block max-w-7xl mx-auto px-6 w-full mb-8">
+        <div class="flex items-center gap-4">
+          <span id="cinema-index" class="text-xs font-mono text-accent tabular-nums">01</span>
+          <div class="flex-1 h-px" style="background: rgba(255,255,255,0.09);">
+            <div id="cinema-bar" class="h-px bg-accent origin-left" style="transform: scaleX(0); width: 100%;"></div>
+          </div>
+          <span class="text-xs font-mono text-fg-muted tabular-nums">{String(featured.length).padStart(2, '0')}</span>
+        </div>
+      </div>
+
+      <div id="cinema-track" class="cinema-viewport lg:max-w-none">
+        {featured.map((p, i) => (
+          <article class="cinema-panel group">
+            <a href={p.url} target="_blank" rel="noopener noreferrer"
+              class="grid lg:grid-cols-[1.12fr_0.88fr] rounded-2xl overflow-hidden h-full"
+              style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
+                     border: 1px solid rgba(255,255,255,0.08);
+                     box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 20px 60px rgba(0,0,0,0.45);">
+
+              <!-- Browser chrome + live screenshot -->
+              <div class="relative flex flex-col overflow-hidden lg:border-r border-white/[0.06]" style="background: #0a0f0c;">
+                <div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.06] flex-shrink-0">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-400/50"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-accent/50"></span>
+                  <span class="ml-3 text-[10px] font-mono text-fg-muted truncate">
+                    {p.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                  </span>
                 </div>
-                <h3 class="text-sm font-semibold text-fg leading-tight">{p.name}</h3>
+                <div class="relative aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-0 overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={`Captura del sitio ${p.name} — ${p.kind}`}
+                    width="1440" height="900"
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    class="shot w-full h-full object-cover object-top"
+                  />
+                  <div class="absolute inset-0 pointer-events-none"
+                    style="background: linear-gradient(180deg, transparent 55%, rgba(3,7,4,0.45) 100%);"></div>
+                </div>
               </div>
-              <svg class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-fg-muted"
-                xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </div>
 
-            <!-- Description -->
-            <p class="text-xs text-fg-muted leading-relaxed flex-1">{p.description}</p>
+              <!-- Meta -->
+              <div class="p-6 lg:p-8 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4 flex-wrap">
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider"
+                    style={`color: ${p.accent}; border: 1px solid ${p.accent}33; background: ${p.accent}12;`}>
+                    {p.kind}
+                  </span>
+                  <span class="text-[10px] font-mono text-fg-muted">{p.year}</span>
+                </div>
 
-            <!-- Stack pills -->
-            <div class="flex flex-wrap gap-1.5">
-              {p.stack.map(tech => (
-                <span class="px-2 py-0.5 rounded-md text-[10px] font-mono"
-                  style={`color: ${p.accent}cc; border: 1px solid ${p.accent}22; background: ${p.accent}08;`}>
-                  {tech}
+                <h3 class="text-2xl lg:text-3xl font-semibold tracking-tight text-fg mb-3">{p.name}</h3>
+                <p class="text-sm text-fg-muted leading-relaxed mb-5">{p.description}</p>
+
+                <div class="flex items-center gap-2 mb-5 text-sm font-medium" style={`color: ${p.accent};`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="flex-shrink-0">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {p.metric}
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  {p.stack.map(tech => (
+                    <span class="px-2 py-0.5 rounded-md text-[10px] font-mono"
+                      style={`color: ${p.accent}cc; border: 1px solid ${p.accent}22; background: ${p.accent}08;`}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium text-fg-muted group-hover:text-fg transition-colors">
+                  Visitar sitio
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
                 </span>
-              ))}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="lg:hidden text-center text-[10px] font-mono tracking-widest uppercase text-fg-muted mt-5">
+        ← Desliza para ver más →
+      </p>
+    </div>
+
+    <!-- More projects -->
+    <div class="max-w-7xl mx-auto px-6 pt-20 lg:pt-24 pb-24 lg:pb-32">
+      <h3 class="text-sm font-mono tracking-widest uppercase text-fg-muted mb-8">
+        También hemos construido
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {moreProjects.map(p => {
+          const Tag = p.url ? 'a' : 'div';
+          return (
+            <Tag
+              {...(p.url ? { href: p.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
+              class="grid-card group card-spotlight rounded-2xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1"
+              style="background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.012) 100%);
+                     border: 1px solid rgba(255,255,255,0.07);
+                     box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${p.accent};`}></span>
+                  <h4 class="text-sm font-semibold text-fg leading-tight">{p.name}</h4>
+                </div>
+                {p.url && (
+                  <svg class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-fg-muted"
+                    xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                )}
+              </div>
+
+              <p class="text-xs text-fg-muted leading-relaxed flex-1">{p.description}</p>
+
+              {p.note && (
+                <span class="inline-flex w-fit items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-mono text-fg-muted"
+                  style="border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  {p.note}
+                </span>
+              )}
+
+              <div class="flex flex-wrap gap-1.5">
+                {p.stack.map(tech => (
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-mono"
+                    style={`color: ${p.accent}cc; border: 1px solid ${p.accent}22; background: ${p.accent}08;`}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       5 · PROOF — NÚMEROS VERIFICABLES
+  ══════════════════════════════════════ -->
+  <section id="numeros" class="relative py-24 lg:py-28 border-y border-white/[0.06]"
+    style="background: linear-gradient(180deg, rgba(3,7,4,0) 0%, rgba(1,4,2,0.6) 50%, rgba(3,7,4,0) 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        {metrics.map(m => (
+          <div class="metric-item text-center lg:text-left">
+            <div class="text-5xl lg:text-6xl font-semibold tracking-tight grad-heading mb-3 tabular-nums">
+              <span data-metric={m.value}>0</span>{m.suffix}
             </div>
-          </a>
+            <div class="text-sm font-medium text-fg mb-1">{m.label}</div>
+            <div class="text-xs text-fg-muted font-mono">{m.sub}</div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
-
   <!-- ══════════════════════════════════════
-       POR QUÉ STAY TRUE (BENTO)
+       6 · POR QUÉ STAY TRUE (BENTO)
   ══════════════════════════════════════ -->
   <section id="nosotros" class="relative py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-6">
@@ -730,105 +980,60 @@ const processSteps = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[190px]">
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-4 md:auto-rows-[190px]">
 
-        <!-- Large: arquitectura limpia (4×2) -->
         <div
           id="bento-main"
           class="group card-spotlight rounded-2xl p-6 overflow-hidden md:col-span-4 md:row-span-2"
           style="background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.018) 100%);
-                 border: 1px solid rgba(255,255,255,0.07);
-                 box-shadow: 0 0 0 1px rgba(255,255,255,0.035), 0 8px 48px rgba(0,0,0,0.42);"
+                 border: 1px solid rgba(255,255,255,0.08);
+                 box-shadow: 0 0 0 1px rgba(255,255,255,0.035), 0 4px 32px rgba(0,0,0,0.35);"
         >
-          <div class="absolute inset-0 opacity-60 pointer-events-none"
-            style="background: radial-gradient(ellipse at 85% 10%, rgba(34,197,94,0.09) 0%, transparent 55%);">
-          </div>
-          <div class="relative h-full flex flex-col justify-between">
-            <div>
-              <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-4">ARQUITECTURA</div>
-              <h3 class="text-2xl font-semibold text-fg mb-3 tracking-tight">Código limpio y mantenible</h3>
-              <p class="text-sm text-fg-muted leading-relaxed max-w-sm">
-                Aplicamos principios SOLID y mejores prácticas de la industria. Código que tu equipo
-                puede entender, extender y mantener años después de la entrega.
-              </p>
+          <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-4">Arquitectura</div>
+          <h3 class="text-2xl font-semibold text-fg mb-3 tracking-tight">Código limpio y mantenible</h3>
+          <p class="text-sm text-fg-muted leading-relaxed mb-6 max-w-md">
+            Aplicamos principios SOLID y mejores prácticas de la industria. Código que tu equipo
+            puede entender, extender y mantener años después de la entrega.
+          </p>
+          <div class="rounded-xl overflow-hidden" style="background: rgba(1,4,2,0.75); border: 1px solid rgba(255,255,255,0.06);">
+            <div class="px-4 py-2.5 border-b border-white/[0.05] flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-400/50"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-accent/50"></span>
             </div>
-            <div class="rounded-xl overflow-hidden mt-4"
-              style="background: rgba(1,4,2,0.65); border: 1px solid rgba(255,255,255,0.06);">
-              <div class="px-4 py-2 border-b border-white/[0.05] flex gap-1.5">
-                <div class="w-2 h-2 rounded-full bg-red-400/50"></div>
-                <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
-                <div class="w-2 h-2 rounded-full bg-accent/50"></div>
-              </div>
-              <div class="p-4 font-mono text-[11px] leading-[1.7]">
-                <div><span class="text-fg-muted">{"// Limpio · Tipado · Probado"}</span></div>
-                <div><span class="text-accent-lime">interface</span>&nbsp;<span class="text-accent-bright">ProyectoConfig</span>&nbsp;<span class="text-fg/45">&#123;</span></div>
-                <div class="pl-4"><span class="text-accent-mint">nombre</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">string</span><span class="text-fg/45">;</span></div>
-                <div class="pl-4"><span class="text-accent-mint">escala</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">'startup'&nbsp;|&nbsp;'empresa'</span><span class="text-fg/45">;</span></div>
-                <div class="pl-4"><span class="text-accent-mint">deploy</span><span class="text-fg/45">:&nbsp;</span><span class="text-accent-lime">'cloud'&nbsp;|&nbsp;'vps'</span><span class="text-fg/45">;</span></div>
-                <div><span class="text-fg/45">&#125;</span></div>
-              </div>
+            <div class="p-4 font-mono text-[11px] leading-[1.75]">
+              <div class="text-fg-muted">{"// Limpio · Tipado · Probado"}</div>
+              <div><span class="text-accent-lime">interface</span> <span class="text-accent-bright">ProyectoConfig</span> <span class="text-fg/40">&#123;</span></div>
+              <div class="pl-4"><span class="text-accent-mint">nombre</span><span class="text-fg/40">:</span> <span class="text-accent">string</span><span class="text-fg/40">;</span></div>
+              <div class="pl-4"><span class="text-accent-mint">escala</span><span class="text-fg/40">:</span> <span class="text-accent">'startup'</span> <span class="text-fg/40">|</span> <span class="text-accent">'empresa'</span><span class="text-fg/40">;</span></div>
+              <div class="pl-4"><span class="text-accent-mint">deploy</span><span class="text-fg/40">:</span> <span class="text-accent">'cloud'</span> <span class="text-fg/40">|</span> <span class="text-accent">'vps'</span><span class="text-fg/40">;</span></div>
+              <div><span class="text-fg/40">&#125;</span></div>
             </div>
           </div>
         </div>
 
         {bentoFeatures.map(f => (
           <div
-            class={`group card-spotlight rounded-2xl p-5 ${f.span}`}
-            style="background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.016) 100%);
+            class="group card-spotlight rounded-2xl p-6 md:col-span-2"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
                    border: 1px solid rgba(255,255,255,0.07);
                    box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
           >
-            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={`background: radial-gradient(ellipse at 50% 0%, ${f.accentBg.replace('0.15','0.07')} 0%, transparent 65%);`}>
-            </div>
-            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center mb-4"
               style={`background: ${f.accentBg}; border: 1px solid ${f.accentBorder};`}
               set:html={f.icon}>
             </div>
-            <div class="text-[9px] font-mono tracking-widest uppercase mb-2" style={`color: ${f.accent};`}>{f.label}</div>
-            <h3 class="text-sm font-semibold text-fg mb-2 leading-snug">{f.title}</h3>
-            <p class="text-xs text-fg-muted leading-relaxed">{f.desc}</p>
+            <div class="text-[10px] font-mono tracking-widest uppercase mb-2" style={`color: ${f.accent};`}>{f.label}</div>
+            <h3 class="text-base font-semibold text-fg mb-2 tracking-tight">{f.title}</h3>
+            <p class="text-sm text-fg-muted leading-relaxed">{f.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
-
   <!-- ══════════════════════════════════════
-       STACK TECNOLÓGICO
-  ══════════════════════════════════════ -->
-  <section id="stack" class="relative py-24 lg:py-32">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-14 section-header">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
-          Stack tecnológico
-        </div>
-        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight grad-heading">
-          Las herramientas que dominamos
-        </h2>
-      </div>
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-        {techStack.map(t => (
-          <div
-            class="flex flex-col items-center gap-2 p-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-default"
-            style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);">
-            <span class="text-xs font-medium text-center leading-tight" style={`color: ${t.color};`}>{t.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       PROCESO
+       7 · PROCESO
   ══════════════════════════════════════ -->
   <section id="proceso" class="relative py-24 lg:py-32">
     <div class="max-w-7xl mx-auto px-6">
@@ -844,7 +1049,6 @@ const processSteps = [
           mientras nosotros manejamos la complejidad.
         </p>
       </div>
-      <!-- Animated connector line (desktop) -->
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
         {processSteps.map(item => (
@@ -866,12 +1070,72 @@ const processSteps = [
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="h-px" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
-  </div>
+  <!-- ══════════════════════════════════════
+       8 · STACK
+  ══════════════════════════════════════ -->
+  <section id="stack" class="relative py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14 section-header">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          Stack tecnológico
+        </div>
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight grad-heading">
+          Las herramientas que dominamos
+        </h2>
+      </div>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+        {techStack.map(tech => (
+          <div class="rounded-xl px-3 py-4 text-center transition-all duration-300 hover:-translate-y-1"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);">
+            <span class="text-xs font-medium" style={`color: ${tech.color};`}>{tech.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════
-       CTA
+       9 · FAQ — MANEJO DE OBJECIONES
+  ══════════════════════════════════════ -->
+  <section id="faq" class="relative py-24 lg:py-32">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-14 section-header">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/25 bg-accent/[0.07] text-accent text-xs font-mono tracking-widest uppercase mb-6">
+          Preguntas frecuentes
+        </div>
+        <h2 class="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-5 grad-heading">
+          Lo que todos<br/>preguntan primero.
+        </h2>
+      </div>
+
+      <div class="space-y-3">
+        {faqs.map(f => (
+          <details class="faq-item faq-row rounded-2xl overflow-hidden"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.012) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 hover:bg-white/[0.02] transition-colors">
+              <span class="text-base font-medium text-fg">{f.q}</span>
+              <span class="faq-chevron flex-shrink-0 text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <div>
+                <p class="px-6 pb-5 text-sm text-fg-muted leading-relaxed">{f.a}</p>
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       10 · RESOLUTION — CTA
   ══════════════════════════════════════ -->
   <section id="contacto" class="relative py-24 lg:py-32 overflow-hidden">
     <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
@@ -894,7 +1158,7 @@ const processSteps = [
         Sin compromiso — solo una conversación.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="https://wa.me/529981169584"
+        <a href={WHATSAPP}
           target="_blank" rel="noopener noreferrer"
           class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 10px 40px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.14);">
@@ -904,29 +1168,29 @@ const processSteps = [
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
         </a>
-        <a href="mailto:kabiralberto10@gmail.com"
+        <a href={`mailto:${EMAIL}`}
           class="inline-flex items-center gap-2 px-6 py-4 rounded-lg text-sm font-medium text-fg transition-all duration-200 hover:bg-white/[0.05]"
           style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09);">
           Enviar un correo
         </a>
       </div>
       <p class="mt-6 text-xs text-fg-muted">
-        <span class="text-accent">◆</span>&nbsp; Xalapa, Veracruz · Cancún, Quintana Roo &nbsp;·&nbsp; kabiralberto10@gmail.com &nbsp;·&nbsp; +52 998 116 9584
+        <span class="text-accent">◆</span>&nbsp; Xalapa, Veracruz · Cancún, Quintana Roo &nbsp;·&nbsp; {EMAIL} &nbsp;·&nbsp; +52 998 116 9584
       </p>
     </div>
   </section>
 
+  </main>
+
   <!-- ══════════════════════════════════════
        FOOTER
   ══════════════════════════════════════ -->
-  </main>
-
   <footer class="relative border-t border-white/[0.06]" style="background: #010402;">
     <div class="max-w-7xl mx-auto px-6 py-14">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
         <div class="col-span-2 md:col-span-1">
           <a href="/" class="flex items-center gap-3 mb-4">
-            <img src="/img/logo.svg" alt="Stay True" class="h-7 w-7" />
+            <img src="/img/logo.svg" alt="Stay True" class="h-7 w-7" width="28" height="28" />
           </a>
           <p class="text-sm text-fg-muted leading-relaxed mb-3">
             Estudio de desarrollo digital mexicano. Construimos software que perdura.
@@ -950,7 +1214,7 @@ const processSteps = [
         <div>
           <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Empresa</div>
           <ul class="space-y-3">
-            {([["Proyectos", "#proyectos"], ["Proceso", "#proceso"], ["Contacto", "#contacto"]] as const).map(([label, href]) => (
+            {([["Proyectos", "#proyectos"], ["Proceso", "#proceso"], ["Preguntas", "#faq"], ["Contacto", "#contacto"]] as const).map(([label, href]) => (
               <li><a href={href} class="text-sm text-fg-muted hover:text-fg transition-colors">{label}</a></li>
             ))}
           </ul>
@@ -959,27 +1223,27 @@ const processSteps = [
           <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Contacto</div>
           <ul class="space-y-3">
             <li>
-              <a href="https://wa.me/529981169584" target="_blank" rel="noopener noreferrer"
+              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
                 class="text-sm text-fg-muted hover:text-fg transition-colors">
                 +52 998 116 9584
               </a>
             </li>
             <li>
-              <a href="mailto:kabiralberto10@gmail.com"
-                class="text-sm text-fg-muted hover:text-fg transition-colors">
-                kabiralberto10@gmail.com
+              <a href={`mailto:${EMAIL}`} class="text-sm text-fg-muted hover:text-fg transition-colors">
+                {EMAIL}
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <div class="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-fg-muted">© 2025 Stay True. Todos los derechos reservados.</p>
-        <div class="flex items-center gap-1.5 text-xs text-fg-muted">
-          <span>Hecho con precisión.</span>
-          <span class="text-accent">◆</span>
-          <span>Stay True.</span>
-        </div>
+
+      <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-fg-muted">
+          © {new Date().getFullYear()} Stay True Digital Studio. Todos los derechos reservados.
+        </p>
+        <p class="text-xs text-fg-muted font-mono">
+          Hecho en México <span class="text-accent">◆</span> Astro + Tailwind
+        </p>
       </div>
     </div>
   </footer>
@@ -1015,6 +1279,12 @@ const processSteps = [
 
   // ── Split section-header h2 into word spans (preserves <br/>) ─
   document.querySelectorAll<HTMLElement>('.section-header h2').forEach(h => {
+    // Gradient must be re-applied per word, not left on the parent: once GSAP
+    // puts a `transform` on each split-word span, Chrome's background-clip:text
+    // on the multi-word ancestor mis-clips and words render stacked on top of
+    // each other. Clipping per (already-transformed) leaf span avoids it.
+    const gradient = h.classList.contains('grad-heading');
+    if (gradient) h.classList.remove('grad-heading');
     Array.from(h.childNodes).forEach(node => {
       if (node.nodeType !== Node.TEXT_NODE || !node.textContent) return;
       const frag = document.createDocumentFragment();
@@ -1024,7 +1294,7 @@ const processSteps = [
           frag.appendChild(document.createTextNode(part));
         } else {
           const span = document.createElement('span');
-          span.className = 'split-word';
+          span.className = gradient ? 'split-word grad-heading' : 'split-word';
           span.textContent = part;
           frag.appendChild(span);
         }
@@ -1047,23 +1317,17 @@ const processSteps = [
     start: 'top -1',
     onUpdate: (self) => {
       const navbar = document.getElementById('navbar');
-      if (navbar) {
-        navbar.classList.toggle('navbar-scrolled', self.progress > 0);
-      }
+      if (navbar) navbar.classList.toggle('navbar-scrolled', self.progress > 0);
     },
   });
 
-  // ── Scroll animations (matchMedia split) ──────────────────
   const mm = gsap.matchMedia();
 
   // ═══════════════ HERO ENTRANCE + COUNTERS ═══════════════
-  // (any viewport, motion-OK)
   mm.add('(prefers-reduced-motion: no-preference)', () => {
     const heroTl = gsap.timeline({ delay: 0.15 });
 
-    heroTl.from('.hero-location-badge', {
-      opacity: 0, y: 16, duration: 0.5,
-    });
+    heroTl.from('.hero-location-badge', { opacity: 0, y: 16, duration: 0.5 });
 
     heroTl.from('#hero-headline span', {
       clipPath: 'inset(0 100% 0 0)',
@@ -1080,31 +1344,43 @@ const processSteps = [
     }, 0.2);
     heroTl.from('.hero-stats', { opacity: 0, y: 16, duration: 0.5 }, 0.8);
 
-    // STATS COUNTERS
-    document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el => {
-      const target = parseInt(el.dataset.counter || '0', 10);
-      const prefix = el.dataset.prefix || '';
+    // Scroll cue: looping hint that fades out once you actually scroll
+    gsap.to('#scroll-cue-fill', {
+      yPercent: 200, duration: 1.6, ease: 'power2.inOut', repeat: -1,
+    });
+    gsap.to('#scroll-cue', {
+      opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: '+=260', scrub: true },
+    });
+
+    // Counters (hero stats + metrics band)
+    const runCounter = (el: HTMLElement, target: number, prefix: string) => {
       el.textContent = prefix + '0';
       const obj = { val: 0 };
-      ScrollTrigger.create({
-        trigger: el, start: 'top 88%',
-        onEnter: () => {
-          gsap.to(obj, {
-            val: target, duration: 2, ease: 'power2.out',
-            onUpdate: () => { el.textContent = prefix + Math.round(obj.val); },
-          });
-        },
+      const count = () => gsap.to(obj, {
+        val: target, duration: 1.8, ease: 'power2.out',
+        onUpdate: () => { el.textContent = prefix + Math.round(obj.val); },
       });
-    });
+      // Already on screen at load (hero stats): run now. A ScrollTrigger would
+      // sit at "0" until the first scroll, which reads as a broken number.
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        gsap.delayedCall(0.9, count);
+        return;
+      }
+      ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: count });
+    };
+    document.querySelectorAll<HTMLElement>('[data-counter]').forEach(el =>
+      runCounter(el, parseInt(el.dataset.counter || '0', 10), el.dataset.prefix || '')
+    );
+    document.querySelectorAll<HTMLElement>('[data-metric]').forEach(el =>
+      runCounter(el, parseInt(el.dataset.metric || '0', 10), '')
+    );
   });
 
-  // ═══════════════ FLUID REVEALS (all viewports) ═══════════════
-  // No pinning: every section reveals once on enter. Short page,
-  // natural scroll speed, buttery — no forced 13× scroll length.
+  // ═══════════════ FLUID REVEALS ═══════════════
   mm.add('(prefers-reduced-motion: no-preference)', () => {
     const desktop = window.innerWidth >= 768;
 
-    // ── Hero parallax (desktop only): subtle drift, NO pin ─────
     if (desktop) {
       gsap.to('.hero-parallax-text', {
         y: -70, opacity: 0.4, ease: 'none',
@@ -1148,10 +1424,12 @@ const processSteps = [
     };
 
     reveal('#servicios .card-spotlight',                 { opacity: 0, y: 56, rotateX: desktop ? -12 : 0, transformPerspective: 1000 });
-    reveal('#proyectos .card-spotlight',                 { opacity: 0, y: 48, scale: 0.97 }, 0.06);
+    reveal('#proyectos .grid-card',                      { opacity: 0, y: 44, scale: 0.97 }, 0.06);
     reveal('#nosotros .card-spotlight:not(#bento-main)', { opacity: 0, y: 44, rotateY: desktop ? 5 : 0 });
     reveal('#bento-main',                                { opacity: 0, y: 40, scale: 0.94 });
     reveal('#stack .grid > div',                         { opacity: 0, y: 28, scale: 0.9 }, 0.05);
+    reveal('.metric-item',                               { opacity: 0, y: 32 }, 0.08);
+    reveal('.faq-row',                                   { opacity: 0, y: 24 }, 0.06);
 
     // ── Proceso: reveal + sequential active glow ───────────────
     gsap.utils.toArray<HTMLElement>('.process-step').forEach((step, i) => {
@@ -1171,8 +1449,68 @@ const processSteps = [
       });
     });
 
-    // ── Contacto climax ───────────────────────────────────────
     reveal('#contacto .relative.max-w-4xl', { opacity: 0, y: 48, scale: 0.96 });
+  });
+
+  // ═══════════════ SIGNATURE: PINNED HORIZONTAL CINEMA ═══════════════
+  // Desktop only. Touch devices keep native swipe-snap (see global.css) —
+  // pinning a horizontal track on touch fights the user's own gesture.
+  mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+    const track  = document.getElementById('cinema-track');
+    const cinema = document.getElementById('cinema');
+    const bar    = document.getElementById('cinema-bar');
+    const label  = document.getElementById('cinema-index');
+    if (!track || !cinema) return;
+
+    const panels = gsap.utils.toArray<HTMLElement>('.cinema-panel');
+    // Recomputed on every refresh so resizes/zoom don't strand the track.
+    const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + 96);
+
+    const tween = gsap.to(track, {
+      x: () => -distance(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: cinema,
+        start: 'top top',
+        end: () => '+=' + distance(),
+        pin: true,
+        scrub: 0.8,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (bar) gsap.set(bar, { scaleX: self.progress });
+          if (label) {
+            const i = Math.min(panels.length, Math.round(self.progress * (panels.length - 1)) + 1);
+            label.textContent = String(i).padStart(2, '0');
+          }
+        },
+      },
+    });
+
+    // Panels drift in depth as they cross the middle of the screen —
+    // the "journey" beat: each project arrives, peaks, recedes.
+    panels.forEach(panel => {
+      gsap.fromTo(panel,
+        { scale: 0.9, opacity: 0.45 },
+        {
+          scale: 1, opacity: 1, ease: 'none',
+          scrollTrigger: {
+            trigger: panel,
+            containerAnimation: tween,
+            start: 'left 88%',
+            end: 'center 52%',
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    return () => { tween.scrollTrigger?.kill(); tween.kill(); };
+  });
+
+  // Reduced-motion / no-JS-animation path still needs the panels visible.
+  mm.add('(prefers-reduced-motion: reduce)', () => {
+    gsap.set('.cinema-panel', { opacity: 1, scale: 1 });
   });
 
   // ── Mobile menu ────────────────────────────────────────────
@@ -1181,18 +1519,18 @@ const processSteps = [
   const iconOpen   = document.getElementById('icon-open');
   const iconClose  = document.getElementById('icon-close');
 
-  menuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-    iconOpen?.classList.toggle('hidden');
-    iconClose?.classList.toggle('hidden');
-  });
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
-      iconOpen?.classList.remove('hidden');
-      iconClose?.classList.add('hidden');
-    });
-  });
+  const setMenu = (open: boolean) => {
+    mobileMenu?.classList.toggle('hidden', !open);
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+    menuToggle?.setAttribute('aria-expanded', String(open));
+  };
+  menuToggle?.addEventListener('click', () =>
+    setMenu(mobileMenu?.classList.contains('hidden') ?? false)
+  );
+  document.querySelectorAll('.mobile-nav-link').forEach(link =>
+    link.addEventListener('click', () => setMenu(false))
+  );
 
   // ── Card spotlight ─────────────────────────────────────────
   document.querySelectorAll<HTMLElement>('.card-spotlight').forEach(card => {
@@ -1200,6 +1538,16 @@ const processSteps = [
       const rect = card.getBoundingClientRect();
       card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
       card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // ── FAQ: keep only one answer open at a time ───────────────
+  const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      faqItems.forEach(other => { if (other !== item) other.open = false; });
+      ScrollTrigger.refresh();
     });
   });
 
@@ -1230,7 +1578,7 @@ const processSteps = [
   });
 
   // ── Hero particle network (Three.js) ──────────────────────
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!reduceMotion) {
     const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
     if (canvas) {
       const W = () => window.innerWidth;
@@ -1346,5 +1694,4 @@ const processSteps = [
     }
   }
 </script>
-
 </html>
