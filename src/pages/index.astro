@@ -45,15 +45,15 @@ const services = [
 // claimed business outcome we can't back up.
 const featured = [
   {
-    name: "Cluby",
-    kind: "Marketplace",
-    year: "2022 — hoy",
-    img: "/img/projects/cluby.webp",
-    url: "https://cluby.mx",
+    name: "AMX Developers",
+    kind: "Desarrollo inmobiliario",
+    year: "2026",
+    img: "/img/projects/amx-developers.webp",
+    url: "https://amxdevelopers.com",
     description:
-      "Marketplace completo para artículos deportivos personalizados. Pasarela de pago, tres dashboards diferenciados por rol, integración con Google Maps y SEO técnico.",
-    metric: "+2 años en producción",
-    stack: ["Laravel", "PHP", "MySQL", "REST API", "Google Maps"],
+      "Sitio bilingüe (ES/EN) para desarrolladora inmobiliaria de lujo con proyectos en México y Miami. Portafolio de obras, galerías a pantalla completa y contacto directo por WhatsApp.",
+    metric: "Bilingüe ES / EN",
+    stack: ["Astro.js", "TypeScript", "SEO"],
     accent: "#84cc16",
   },
   {
@@ -69,15 +69,15 @@ const featured = [
     accent: "#38bdf8",
   },
   {
-    name: "El Dorado Spa Resorts",
-    kind: "Hotelería de lujo",
-    year: "2021",
-    img: "/img/projects/el-dorado.webp",
-    url: "https://www.eldoradosparesorts.com.mx/destino",
+    name: "Mezcal Tierra Mística",
+    kind: "E-commerce artesanal",
+    year: "2026",
+    img: "/img/projects/tierra-mistica.webp",
+    url: "https://tierramisticamezcal.com",
     description:
-      "Plataforma para cadena de resorts todo incluido en la Riviera Maya. Explorador de destinos con mapa interactivo, módulos de actividades y flujo de reserva en línea.",
-    metric: "Mapa interactivo de destinos",
-    stack: ["React", "Laravel"],
+      "Tienda en línea para mezcal artesanal de Oaxaca. Catálogo por variedad de agave, carrito propio, cálculo de envío por código postal y contenido editorial sobre el proceso de producción.",
+    metric: "Carrito y envíos a la medida",
+    stack: ["Astro.js", "TypeScript", "E-commerce"],
     accent: "#22c55e",
   },
   {
@@ -105,15 +105,15 @@ const featured = [
     accent: "#4ade80",
   },
   {
-    name: "Verde Caribe",
-    kind: "Sitio corporativo",
-    year: "2025",
-    img: "/img/projects/verde-caribe.webp",
-    url: "https://verdecaribe.com",
+    name: "Maskanieves",
+    kind: "Marca local · Cancún",
+    year: "2026",
+    img: "/img/projects/maskanieves.webp",
+    url: "https://maskanieves.com",
     description:
-      "Arquitectura desacoplada Astro.js + Laravel vía API REST para empresa de paisajismo. HTML estático servido al usuario, panel dinámico para el cliente.",
-    metric: "Arquitectura desacoplada",
-    stack: ["Astro.js", "Laravel", "MySQL", "REST API"],
+      "Sitio de identidad fuerte para heladería artesanal de Cancún. Catálogo de sabores por categoría, menú con precios y pedidos directos por WhatsApp para domicilio y eventos.",
+    metric: "Pedidos directos por WhatsApp",
+    stack: ["Astro.js", "Tailwind CSS", "TypeScript"],
     accent: "#6ee7b7",
   },
 ];
@@ -176,14 +176,14 @@ const moreProjects = [
 const clients = [
   "Gobierno de Jalisco",
   "Gobierno de CDMX",
-  "El Dorado Spa Resorts",
+  "AMX Developers",
   "Maroma Beach",
   "Lomas Travel",
-  "Cluby",
+  "Mezcal Tierra Mística",
   "Ohana Transfers",
   "Brickell News",
   "México Me Necesita",
-  "Verde Caribe",
+  "Maskanieves",
 ];
 
 const metrics = [
@@ -315,7 +315,9 @@ const navItems = [
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+  <!-- Raster fallback is a real PNG; favicon.ico holds the same bytes purely
+       for the browser's implicit /favicon.ico request. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -782,7 +784,7 @@ const navItems = [
         </h2>
         <p class="text-lg text-fg-muted leading-relaxed">
           Cada captura es el sitio real, en vivo, hoy. Desde sistemas de gobierno hasta
-          marketplaces y resorts de lujo — proyectos que siguen corriendo y generando valor.
+          tiendas en línea y marcas de lujo — proyectos que siguen corriendo y generando valor.
         </p>
       </div>
     </div>

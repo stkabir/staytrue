@@ -1,15 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Stay True">
+  <!-- Una S partida en 3: la inicial del estudio cortada en tres cuñas de
+       sandía. El tres deja de ser un conteo de piezas sueltas y pasa a ser
+       la construcción de la letra — quitas una pieza y la S se rompe.
+
+       La S es un único path dibujado tres veces con distinto grosor:
+       cáscara (7.4) → albedo (5.4) → pulpa (4). Al ser concéntricos, la
+       sandía corre a lo largo de la curva en vez de cruzarla, que es como se
+       ve una cuña de verdad. Bandas por gradiente lineal no funcionan aquí:
+       la S cambia de dirección y la banda quedaría atravesada.
+
+       Los cortes salen de stroke-dasharray sobre pathLength="100", así los
+       tramos van en porcentaje y no en unidades de usuario: 34 / 18 / 32 con
+       aire de 8. Esos cortes caen en las inflexiones de la curva — el arco
+       de arriba, la diagonal, el arco de abajo. Movidos de ahí parecen
+       mordidas, no rebanadas.
+
+       stroke-linecap DEBE ser butt: con round los remates crecen w/2 por lado
+       y se comen el aire entre piezas.
+
+       Paleta en verdes: la cáscara va oscura y la "pulpa" toma el verde y el
+       lima del acento del sitio, así el icono vive dentro del sistema de color
+       de la página en vez de meter un rojo que no aparece en ningún otro lado.
+       Variante sandía: cáscara #42d06c → #177a3c, pulpa #ff5c6a → #e0203d. -->
   <defs>
-    <linearGradient id="st" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#10b981"/>
-      <stop offset="0.5" stop-color="#22c55e"/>
-      <stop offset="1" stop-color="#84cc16"/>
+    <linearGradient id="cascara" gradientUnits="userSpaceOnUse" x1="0" y1="4" x2="0" y2="28">
+      <stop offset="0" stop-color="#0f6b32"/>
+      <stop offset="1" stop-color="#0b4a22"/>
+    </linearGradient>
+    <linearGradient id="pulpa" gradientUnits="userSpaceOnUse" x1="6" y1="4" x2="26" y2="28">
+      <stop offset="0" stop-color="#4ade80"/>
+      <stop offset="1" stop-color="#a3e635"/>
     </linearGradient>
   </defs>
-  <!-- Hexágono (radio 13, centro 16,16) con 3 rebanadas alternas removidas -->
-  <g fill="url(#st)" stroke="url(#st)" stroke-width="1.1" stroke-linejoin="round">
-    <path d="M16 16 L29 16 L22.5 4.7 Z"/>
-    <path d="M16 16 L9.5 4.7 L3 16 Z"/>
-    <path d="M16 16 L9.5 27.3 L22.5 27.3 Z"/>
+  <rect width="32" height="32" rx="7.5" fill="#050c07"/>
+  <g fill="none" stroke-linecap="butt" pathLength="100" stroke-dasharray="34 8 18 8 32">
+    <path d="M23.6 10.2 C23.6 5.6 8.4 5.6 8.4 10.9 C8.4 15.8 23.6 16.6 23.6 21.4 C23.6 26.6 8.4 26.6 8.4 21.8"
+          stroke="url(#cascara)" stroke-width="7.4"/>
+    <path d="M23.6 10.2 C23.6 5.6 8.4 5.6 8.4 10.9 C8.4 15.8 23.6 16.6 23.6 21.4 C23.6 26.6 8.4 26.6 8.4 21.8"
+          stroke="#eaf6d8" stroke-width="5.4"/>
+    <path d="M23.6 10.2 C23.6 5.6 8.4 5.6 8.4 10.9 C8.4 15.8 23.6 16.6 23.6 21.4 C23.6 26.6 8.4 26.6 8.4 21.8"
+          stroke="url(#pulpa)" stroke-width="4"/>
   </g>
 </svg>
