@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Stay True">
+  <!-- Safari pinned-tab icon: una sola silueta, sin tile ni color propio —
+       Safari la pinta con el color de mask-icon. Por eso va sólo la pulpa
+       (el trazo más delgado de los tres del favicon a color): las bandas
+       concéntricas de cáscara y albedo se fundirían en una mancha maciza
+       al pintarse todas del mismo color. Grosor subido a 5.6 para que la S
+       aguante el tamaño de 16px sin adelgazarse. -->
+  <path d="M23.6 10.2 C23.6 5.6 8.4 5.6 8.4 10.9 C8.4 15.8 23.6 16.6 23.6 21.4 C23.6 26.6 8.4 26.6 8.4 21.8"
+        fill="none" stroke="black" stroke-width="5.6" stroke-linecap="butt"
+        pathLength="100" stroke-dasharray="34 8 18 8 32"/>
+</svg>

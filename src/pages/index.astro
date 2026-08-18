@@ -318,8 +318,14 @@ const navItems = [
   <!-- Raster fallback is a real PNG; favicon.ico holds the same bytes purely
        for the browser's implicit /favicon.ico request. -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <!-- Safari pinned tab: silueta monocroma, la pinta Safari con este color. -->
+  <link rel="mask-icon" href="/favicon-mono.svg" color="#22c55e" />
   <link rel="manifest" href="/site.webmanifest" />
+  <!-- Windows tiles: sin TileImage, IE/Edge legacy recorta un screenshot. -->
+  <meta name="msapplication-TileColor" content="#030704" />
+  <meta name="msapplication-TileImage" content="/apple-touch-icon.png" />
+  <meta name="msapplication-config" content="none" />
 
   <!-- ── Primary SEO ──────────────────────────────────────────── -->
   <title>Stay True — Desarrollo Web y Apps a Medida en México</title>
@@ -342,7 +348,7 @@ const navItems = [
   <meta property="og:url" content="https://staytruemx.com/" />
   <meta property="og:title" content="Stay True — Desarrollo Web y Apps a Medida en México" />
   <meta property="og:description" content="Estudio mexicano de desarrollo de software con bases en Xalapa, Veracruz y Cancún, Quintana Roo. Web, apps móviles y software de escritorio a medida en todo México." />
-  <meta property="og:image" content="https://staytruemx.com/og-image.jpg" />
+  <meta property="og:image" content="https://staytruemx.com/og-image.jpg?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -352,7 +358,7 @@ const navItems = [
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Stay True — Desarrollo Web y Apps a Medida en México" />
   <meta name="twitter:description" content="Web, apps móviles y software de escritorio a medida. Bases en Xalapa, Veracruz y Cancún, Quintana Roo — cobertura en todo México." />
-  <meta name="twitter:image" content="https://staytruemx.com/og-image.jpg" />
+  <meta name="twitter:image" content="https://staytruemx.com/og-image.jpg?v=2" />
   <meta name="twitter:image:alt" content="Stay True — Desarrollo web, apps y software a medida en México" />
 
   <!-- ── Performance ──────────────────────────────────────────── -->
@@ -370,8 +376,8 @@ const navItems = [
     "@id": "https://staytruemx.com/#studio",
     "name": "Stay True Digital Studio",
     "url": "https://staytruemx.com/",
-    "image": "https://staytruemx.com/og-image.jpg",
-    "logo": "https://staytruemx.com/apple-touch-icon.png",
+    "image": "https://staytruemx.com/og-image.jpg?v=2",
+    "logo": "https://staytruemx.com/icon-512.png",
     "description": "Estudio mexicano de desarrollo de software: aplicaciones web, apps móviles y software de escritorio a medida. Bases en Xalapa, Veracruz y Cancún, Quintana Roo.",
     "email": "hola@staytruemx.com",
     "telephone": "+52-998-116-9584",
@@ -438,7 +444,7 @@ const navItems = [
 
   <div id="scroll-progress"></div>
 
-  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-accent focus:text-white">
+  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-accent focus:text-canvas">
     Saltar al contenido
   </a>
 
@@ -487,7 +493,7 @@ const navItems = [
         <!-- Kept visible on mobile too: a portfolio site's whole job is
              getting the visitor to start a conversation. -->
         <a href="#contacto"
-          class="magnetic-btn inline-flex items-center gap-1.5 px-3.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          class="magnetic-btn inline-flex items-center gap-1.5 px-3.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-canvas bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 4px 16px rgba(34,197,94,0.28), inset 0 1px 0 rgba(255,255,255,0.14);">
           Hablemos
           <svg class="hidden md:block" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -519,7 +525,7 @@ const navItems = [
           </a>
         ))}
         <a href="#contacto"
-          class="mobile-nav-link mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-white bg-accent"
+          class="mobile-nav-link mt-4 w-full text-center px-4 py-3 rounded-lg text-sm font-medium text-canvas bg-accent"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.4), 0 4px 14px rgba(34,197,94,0.25);">
           Hablemos
         </a>
@@ -557,7 +563,7 @@ const navItems = [
 
           <div class="flex flex-col sm:flex-row gap-4 hero-ctas">
             <a href="#contacto"
-              class="magnetic-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+              class="magnetic-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-sm font-medium text-canvas bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
               style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 6px 28px rgba(34,197,94,0.3), inset 0 1px 0 rgba(255,255,255,0.14);">
               Iniciar un proyecto
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -1162,7 +1168,7 @@ const navItems = [
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <a href={WHATSAPP}
           target="_blank" rel="noopener noreferrer"
-          class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-white bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          class="magnetic-btn inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-canvas bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
           style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 10px 40px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.14);">
           Escribir por WhatsApp
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
