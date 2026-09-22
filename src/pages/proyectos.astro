@@ -1,0 +1,503 @@
+---
+import '../styles/global.css';
+import { projects, WHATSAPP, EMAIL } from '../data/projects';
+
+// Full portfolio — the link we send straight to prospective clients.
+// Two blocks: live sites with a screenshot (the visual grid), then
+// private / offline work shown as compact code tiles.
+const shots    = projects.filter(p => p.img);
+const internal = projects.filter(p => !p.img && p.code);
+const portfolio = [...shots, ...internal];
+
+// Name → words → letters, so each letter can flip in on its own while
+// words still wrap as units on narrow cards.
+const words = (name: string) => name.split(' ').map(w => w.split(''));
+
+// Minimal highlighting for code tiles — no library, just enough colour
+// to read as an editor: strings, keywords/framework names, arrows.
+const tokenRe = /('[^']*'|"[^"]*"|::class|->|=>|\b(?:Route|enum|case|class|public|function|return|export|const|import|await|satisfies|extends|fn)\b)/;
+const tokenCls = (t: string) =>
+  /^['"]/.test(t) ? 'tok-str' : t === '->' || t === '=>' ? 'tok-dim' : 'tok-kw';
+const highlight = (line: string) =>
+  line.split(tokenRe).filter(Boolean).map(t => ({ t, cls: tokenRe.test(t) ? tokenCls(t) : '' }));
+
+// Split per letter for the entrance wave; spaces stay as nbsp so the
+// inline-block spans don't collapse them.
+const titleChars = 'Stay True'.split('').map(c => (c === ' ' ? ' ' : c));
+
+const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+const TITLE = "Portafolio — Stay True | Proyectos de desarrollo web y apps";
+const DESC  = "Proyectos reales de Stay True Digital Studio en producción: sistemas de gobierno, e-commerce, sitios inmobiliarios, portales editoriales y apps a medida. Xalapa · Cancún · Todo México.";
+const URL   = "https://staytruemx.com/proyectos";
+---
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="mask-icon" href="/favicon-mono.svg" color="#22c55e" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="msapplication-TileColor" content="#030704" />
+  <meta name="msapplication-TileImage" content="/apple-touch-icon.png" />
+  <meta name="msapplication-config" content="none" />
+
+  <!-- Hide animated elements before first paint so they don't flash in
+       and then jump back to their start state once GSAP loads. -->
+  <script is:inline>
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+      document.documentElement.classList.add('pf-anim');
+  </script>
+  <style is:inline>
+    .pf-anim .pf-char, .pf-anim .pf-sub, .pf-anim .pf-card { opacity: 0; }
+    .tok-kw  { color: #6ee7b7; }
+    .tok-dim { color: rgba(232,239,233,0.4); }
+    /* Name reveal starts hidden; GSAP plays it on hover / centre-scroll.
+       Reduced motion never gets `pf-anim`, so names stay visible. */
+    .pf-anim .pf-letter, .pf-anim .pf-arrow, .pf-anim .pf-dim { opacity: 0; }
+  </style>
+
+  <!-- ── Primary SEO ──────────────────────────────────────────── -->
+  <title>{TITLE}</title>
+  <meta name="description" content={DESC} />
+  <meta name="author" content="Stay True Digital Studio" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href={URL} />
+  <meta name="theme-color" content="#030704" />
+
+  <!-- ── Open Graph ───────────────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stay True Digital Studio" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:url" content={URL} />
+  <meta property="og:title" content={TITLE} />
+  <meta property="og:description" content={DESC} />
+  <meta property="og:image" content="https://staytruemx.com/og-image.jpg?v=2" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Stay True — Portafolio de proyectos de desarrollo web y apps" />
+
+  <!-- ── Twitter ──────────────────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={TITLE} />
+  <meta name="twitter:description" content={DESC} />
+  <meta name="twitter:image" content="https://staytruemx.com/og-image.jpg?v=2" />
+
+  <!-- ── Performance ──────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
+
+  <!-- ── Structured data (JSON-LD) ────────────────────────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${URL}#page`,
+    "url": URL,
+    "name": TITLE,
+    "description": DESC,
+    "inLanguage": "es-MX",
+    "isPartOf": { "@type": "WebSite", "url": "https://staytruemx.com/", "name": "Stay True Digital Studio" },
+    "about": { "@id": "https://staytruemx.com/#studio" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": portfolio.length,
+      "itemListElement": portfolio.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": p.name,
+          "description": p.description,
+          ...(p.url ? { "url": p.url } : {}),
+          ...(p.img ? { "image": `https://staytruemx.com${p.img}` } : {}),
+          "creator": { "@id": "https://staytruemx.com/#studio" },
+        },
+      })),
+    },
+  })} />
+</head>
+
+<body class="bg-canvas text-fg font-sans antialiased overflow-x-hidden">
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]">
+    <div class="absolute inset-0 bg-canvas/80 backdrop-blur-xl"></div>
+    <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3" aria-label="Stay True — inicio">
+        <img src="/img/logo.svg" alt="Stay True logo" class="h-8 w-8" width="32" height="32" />
+      </a>
+      <div class="flex items-center gap-5">
+        <a href="/" class="hidden sm:inline text-sm text-fg-muted hover:text-fg transition-colors duration-200">
+          Conoce el estudio
+        </a>
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-canvas bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 4px 16px rgba(34,197,94,0.28), inset 0 1px 0 rgba(255,255,255,0.14);">
+          Hablemos
+          <svg class="hidden md:block" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- ══════════════════════════════════════
+       HEADER — mínimo, el foco son los proyectos
+  ══════════════════════════════════════ -->
+  <header class="relative pt-28 lg:pt-32 pb-10 lg:pb-12 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none flex justify-center" aria-hidden="true">
+      <div class="w-[720px] h-[380px] -mt-32 rounded-full"
+        style="background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6">
+      <!-- overflow-hidden on the h1 masks the letters rising from below -->
+      <h1 class="overflow-hidden text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] pb-1" aria-label="Stay True">
+        {titleChars.map(c => (
+          <span class="pf-char inline-block grad-heading" aria-hidden="true">{c}</span>
+        ))}
+      </h1>
+      <p class="pf-sub mt-2 text-xs font-mono tracking-[0.3em] uppercase text-accent">portfolio</p>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       GRID DE PROYECTOS — captura + nombre al hover
+  ══════════════════════════════════════ -->
+  <section class="relative pb-20 lg:pb-24" aria-label="Proyectos">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {shots.map((p, i) => (
+          <a href={p.url ?? undefined} target="_blank" rel="noopener noreferrer"
+            class="pf-card pf-hero grid-card group card-spotlight rounded-2xl overflow-hidden flex flex-col transition-[translate,box-shadow] duration-300 hover:-translate-y-1"
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.012) 100%);
+                   border: 1px solid rgba(255,255,255,0.07);
+                   box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
+          >
+            <div class="relative flex flex-col overflow-hidden" style="background: #0a0f0c;">
+              <div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.06]">
+                <span class="w-2 h-2 rounded-full bg-red-400/50"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-400/50"></span>
+                <span class="w-2 h-2 rounded-full bg-accent/50"></span>
+                {p.url && <span class="ml-3 text-[10px] font-mono text-fg-muted truncate">{p.displayUrl ?? host(p.url)}</span>}
+              </div>
+              <div class="relative aspect-[16/10] overflow-hidden">
+                <div class="pf-shot w-full h-full">
+                  <img
+                    src={p.img}
+                    alt={`Captura del sitio ${p.name}`}
+                    width="1440" height="900"
+                    loading={i < 6 ? "eager" : "lazy"}
+                    decoding="async"
+                    class="shot w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                <!-- Name reveal layers (GSAP): dim → accent curtain sweep →
+                     letters flip up in 3D → arrow shoots in. Without the
+                     `pf-anim` class (reduced motion) they're simply visible. -->
+                <div class="pf-dim absolute inset-0 pointer-events-none"
+                  style="background: linear-gradient(180deg, rgba(3,7,4,0.25) 0%, rgba(3,7,4,0.55) 50%, rgba(3,7,4,0.92) 100%);"></div>
+                <div class="pf-curtain absolute inset-0 pointer-events-none"
+                  style={`background: ${p.accent}; transform: scaleY(0); transform-origin: 50% 100%;`}></div>
+                <div class="absolute inset-x-0 bottom-0 pointer-events-none px-5 pb-4 flex items-end justify-between gap-3">
+                  <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-fg leading-[1.05] overflow-hidden py-1"
+                    style="perspective: 600px;" aria-label={p.name}>
+                    {words(p.name).map((w, wi) => (
+                      <>
+                        {wi > 0 && ' '}
+                        <span class="inline-block whitespace-nowrap" aria-hidden="true">
+                          {w.map(c => <span class="pf-letter inline-block" style="transform-origin: 50% 100%;">{c}</span>)}
+                        </span>
+                      </>
+                    ))}
+                  </h2>
+                  <svg class="pf-arrow flex-shrink-0 mb-2" style={`color: ${p.accent};`}
+                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SISTEMAS INTERNOS — privados / fuera de línea (tarjeta de código)
+  ══════════════════════════════════════ -->
+  {internal.length > 0 && (
+    <section class="relative pb-24 lg:pb-32" aria-labelledby="internos">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-8">
+          <h2 id="internos" class="text-xs font-mono tracking-[0.3em] uppercase text-accent">Sistemas internos</h2>
+          <p class="mt-2 text-sm text-fg-muted">
+            Plataformas privadas y sitios que ya no están en línea. El código es ilustrativo.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {internal.map(p => (
+            <article
+              class="pf-card group card-spotlight rounded-2xl overflow-hidden flex flex-col transition-[translate,box-shadow] duration-300 hover:-translate-y-1"
+              style="background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.012) 100%);
+                     border: 1px solid rgba(255,255,255,0.07);
+                     box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
+            >
+              <div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.06]" style="background: #0a0f0c;">
+                <span class="w-2 h-2 rounded-full bg-red-400/50"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-400/50"></span>
+                <span class="w-2 h-2 rounded-full bg-accent/50"></span>
+                <span class="ml-3 text-[10px] font-mono text-fg-muted truncate">{p.code!.file}</span>
+              </div>
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <div class="pf-shot w-full h-full px-4 pt-11 pb-4 overflow-hidden"
+                  style={`background: radial-gradient(120% 90% at 100% 0%, ${p.accent}24 0%, transparent 60%), #0a0f0c;`}
+                  role="img" aria-label={`Fragmento de código ilustrativo — ${p.name}`}>
+                  <pre class="font-mono text-[10px] leading-relaxed whitespace-pre text-fg/85" aria-hidden="true">{
+                    p.code!.lines.map((line, n) => (
+                      <div><span class="inline-block w-5 select-none text-fg-muted/40">{n + 1}</span>{
+                        highlight(line).map(s => s.cls
+                          ? <span class={s.cls} style={s.cls === 'tok-str' ? `color: ${p.accent};` : undefined}>{s.t}</span>
+                          : s.t)
+                      }</div>
+                    ))
+                  }</pre>
+                </div>
+                <div class="absolute inset-x-0 bottom-0 h-12 pointer-events-none"
+                  style="background: linear-gradient(180deg, transparent, #0a0f0c);"></div>
+                <span class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-mono text-fg-muted backdrop-blur"
+                  style="border: 1px solid rgba(255,255,255,0.08); background: rgba(3,7,4,0.6);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  {p.status ?? 'Sistema interno'}
+                </span>
+              </div>
+              <div class="px-4 py-3 border-t border-white/[0.06] flex items-center gap-2.5">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${p.accent};`}></span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-semibold text-fg leading-tight truncate">{p.name}</h3>
+                  <p class="text-[11px] font-mono text-fg-muted truncate">{p.kind}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══════════════════════════════════════
+       CTA
+  ══════════════════════════════════════ -->
+  <section class="relative py-24 lg:py-28 border-t border-white/[0.06] overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+      <div class="w-[640px] h-[400px] rounded-full animate-pulse-glow"
+        style="background: radial-gradient(ellipse, rgba(34,197,94,0.08) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+    <div class="pf-cta relative max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-5">
+        <span class="grad-heading">¿Tu proyecto es</span>
+        <span class="shimmer-text">el siguiente?</span>
+      </h2>
+      <p class="text-lg text-fg-muted leading-relaxed mb-10 max-w-xl mx-auto">
+        Cuéntanos qué necesitas y te respondemos en menos de 24 horas con una propuesta clara.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-sm font-medium text-canvas bg-accent hover:bg-accent-bright transition-all duration-200 active:scale-[0.97]"
+          style="box-shadow: 0 0 0 1px rgba(34,197,94,0.5), 0 10px 40px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.14);">
+          Escribir por WhatsApp
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a href={`mailto:${EMAIL}`}
+          class="inline-flex items-center gap-2 px-6 py-4 rounded-lg text-sm font-medium text-fg transition-all duration-200 hover:bg-white/[0.05]"
+          style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09);">
+          Enviar un correo
+        </a>
+      </div>
+      <a href="/" class="inline-flex items-center gap-1.5 mt-8 text-xs text-fg-muted hover:text-fg transition-colors">
+        Conoce cómo trabajamos en staytruemx.com
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="relative border-t border-white/[0.06]" style="background: #010402;">
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-fg-muted">
+      <p>© {new Date().getFullYear()} Stay True Digital Studio</p>
+      <p class="text-center">
+        <span class="text-accent">◆</span>&nbsp; Xalapa · Cancún &nbsp;·&nbsp;
+        <a href={`mailto:${EMAIL}`} class="hover:text-fg transition-colors">{EMAIL}</a> &nbsp;·&nbsp;
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" class="hover:text-fg transition-colors">+52 998 116 9584</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ ease: 'power3.out' });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    // ── Scroll progress bar ──────────────────────────────────
+    gsap.to('#scroll-progress', {
+      scaleX: 1, ease: 'none',
+      scrollTrigger: { start: 'top top', end: 'max', scrub: true },
+    });
+
+    // ── Title: letters rise out of the h1's overflow mask ────
+    // fromTo, not from: the `pf-anim` class already holds them at opacity 0.
+    gsap.fromTo('.pf-char',
+      { yPercent: 110, opacity: 0 },
+      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.04, clearProps: 'transform' });
+    gsap.fromTo('.pf-sub', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.45 });
+
+    // ── Cards: diagonal cascade ──────────────────────────────
+    // Delay grows with row + column, so the wave sweeps from the
+    // top-left corner. Screenshots settle from a slight zoom on
+    // multi-column layouts; phones get a plain fade-up.
+    const cards = gsap.utils.toArray<HTMLElement>('.pf-card');
+    const zoom  = window.matchMedia('(min-width: 640px)').matches;
+    const rows  = [...new Set(cards.map(c => c.offsetTop))].sort((a, b) => a - b);
+    const cols  = [...new Set(cards.map(c => c.offsetLeft))].sort((a, b) => a - b);
+    const STEP  = 0.09;
+
+    const reveal = (card: HTMLElement, delay: number) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.9, delay, clearProps: 'transform' });
+      if (zoom) {
+        gsap.fromTo(card.querySelector('.pf-shot'),
+          { scale: 1.08 },
+          { scale: 1, duration: 1.4, delay, clearProps: 'transform' });
+      }
+    };
+
+    cards.forEach(card => {
+      const row = rows.indexOf(card.offsetTop);
+      const col = cols.indexOf(card.offsetLeft);
+      if (card.getBoundingClientRect().top < window.innerHeight) {
+        // Above the fold: full diagonal wave, just after the title.
+        reveal(card, 0.35 + (row + col) * STEP);
+      } else {
+        // Below the fold: each row sweeps left → right as it enters.
+        ScrollTrigger.create({
+          trigger: card, start: 'top 92%', once: true,
+          onEnter: () => reveal(card, col * STEP),
+        });
+      }
+    });
+
+    gsap.from('.pf-cta', {
+      opacity: 0, y: 32, duration: 0.9,
+      scrollTrigger: { trigger: '.pf-cta', start: 'top 85%', once: true },
+    });
+
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+  }
+
+  // ── Name reveal: accent curtain sweep + 3D letter flip ─────
+  // Enter: curtain rises from the bottom, then retracts upward while
+  // the image darkens; letters flip up out of a mask; arrow shoots in.
+  // Leave: letters exit upward fast — no second curtain sweep.
+  // Desktop plays on hover/focus; touch plays on the card crossing the
+  // viewport centre, handing off to the next one as you scroll.
+  if (!reduceMotion) {
+    const touch = window.matchMedia('(hover: none)').matches;
+
+    gsap.utils.toArray<HTMLElement>('.pf-hero').forEach(card => {
+      const curtain = card.querySelector<HTMLElement>('.pf-curtain')!;
+      const dim     = card.querySelector<HTMLElement>('.pf-dim')!;
+      const arrow   = card.querySelector<HTMLElement>('.pf-arrow')!;
+      const letters = card.querySelectorAll<HTMLElement>('.pf-letter');
+
+      const tlIn = gsap.timeline({ paused: true })
+        .set(curtain, { transformOrigin: '50% 100%' })
+        .fromTo(curtain, { scaleY: 0 }, { scaleY: 1, duration: 0.32, ease: 'power4.in' })
+        .set(curtain, { transformOrigin: '50% 0%' })
+        .to(curtain, { scaleY: 0, duration: 0.5, ease: 'power4.out' })
+        .fromTo(dim, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '<')
+        .fromTo(letters,
+          { yPercent: 120, rotateX: -90, opacity: 0 },
+          { yPercent: 0, rotateX: 0, opacity: 1, duration: 0.7, stagger: 0.035, ease: 'back.out(1.7)' },
+          0.2)
+        .fromTo(arrow,
+          { x: -24, y: 24, rotate: -45, opacity: 0 },
+          { x: 0, y: 0, rotate: 0, opacity: 1, duration: 0.5, ease: 'expo.out' },
+          0.45);
+
+      let tlOut: gsap.core.Timeline | null = null;
+
+      const enter = () => {
+        tlOut?.kill();
+        tlIn.restart();
+      };
+      const leave = () => {
+        tlIn.pause();
+        tlOut?.kill();
+        tlOut = gsap.timeline()
+          .to(letters, { yPercent: -110, opacity: 0, duration: 0.3, stagger: 0.015, ease: 'power2.in' })
+          .to(arrow,   { x: 14, y: -14, opacity: 0, duration: 0.25, ease: 'power2.in' }, 0)
+          .to(dim,     { opacity: 0, duration: 0.4 }, 0.1)
+          .to(curtain, { scaleY: 0, duration: 0.2 }, 0);
+      };
+
+      if (touch) {
+        ScrollTrigger.create({
+          trigger: card, start: 'top center', end: 'bottom center',
+          onEnter: enter, onEnterBack: enter, onLeave: leave, onLeaveBack: leave,
+        });
+      } else {
+        card.addEventListener('mouseenter', enter);
+        card.addEventListener('mouseleave', leave);
+        card.addEventListener('focusin', enter);
+        card.addEventListener('focusout', leave);
+      }
+    });
+  }
+
+  // ── Card spotlight (mouse-track radial glow) ───────────────
+  document.querySelectorAll<HTMLElement>('.card-spotlight').forEach(card => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
+</script>
+</html>

@@ -1,8 +1,6 @@
 ---
 import '../styles/global.css';
-
-const WHATSAPP = "https://wa.me/529981169584?text=Hola%20Stay%20True%2C%20quiero%20cotizar%20un%20proyecto";
-const EMAIL    = "hola@staytruemx.com";
+import { projects, WHATSAPP, EMAIL, type Project } from '../data/projects';
 
 const services = [
   {
@@ -40,137 +38,12 @@ const services = [
   },
 ];
 
-// ── Featured work: the pinned horizontal "cinema" ──────────────
-// Every `metric` here is a verifiable fact about the build, not a
-// claimed business outcome we can't back up.
-const featured = [
-  {
-    name: "AMX Developers",
-    kind: "Desarrollo inmobiliario",
-    year: "2026",
-    img: "/img/projects/amx-developers.webp",
-    url: "https://amxdevelopers.com",
-    description:
-      "Sitio bilingüe (ES/EN) para desarrolladora inmobiliaria de lujo con proyectos en México y Miami. Portafolio de obras, galerías a pantalla completa y contacto directo por WhatsApp.",
-    metric: "Bilingüe ES / EN",
-    stack: ["Astro.js", "TypeScript", "SEO"],
-    accent: "#84cc16",
-  },
-  {
-    name: "Agua Coecytjal",
-    kind: "Gobierno de Jalisco",
-    year: "2023",
-    img: "/img/projects/coecytjal.webp",
-    url: "https://l.coecytjal.org.mx",
-    description:
-      "Sistema estatal de monitoreo de calidad del agua. Captura de muestreos, estadísticas comparativas entre periodos y generación de reportes para toma de decisiones públicas.",
-    metric: "+50 cuerpos de agua monitoreados",
-    stack: ["Laravel", "PHP", "MySQL"],
-    accent: "#38bdf8",
-  },
-  {
-    name: "Mezcal Tierra Mística",
-    kind: "E-commerce artesanal",
-    year: "2026",
-    img: "/img/projects/tierra-mistica.webp",
-    url: "https://tierramisticamezcal.com",
-    description:
-      "Tienda en línea para mezcal artesanal de Oaxaca. Catálogo por variedad de agave, carrito propio, cálculo de envío por código postal y contenido editorial sobre el proceso de producción.",
-    metric: "Carrito y envíos a la medida",
-    stack: ["Astro.js", "TypeScript", "E-commerce"],
-    accent: "#22c55e",
-  },
-  {
-    name: "Maroma Beach",
-    kind: "Club de playa",
-    year: "2021",
-    img: "/img/projects/maroma-beach.webp",
-    url: "https://maromabeach.com/es/",
-    description:
-      "Sitio multiidioma para club de playa en la Riviera Maya. Buscador de disponibilidad con fechas y ocupantes, catálogo de experiencias y galería multimedia optimizada.",
-    metric: "Reservas con buscador en vivo",
-    stack: ["React", "Laravel"],
-    accent: "#10b981",
-  },
-  {
-    name: "Brickell News",
-    kind: "Portal editorial",
-    year: "2024",
-    img: "/img/projects/brickell-news.webp",
-    url: "https://brickell.news",
-    description:
-      "Portal de noticias con gestor de contenidos propio, portadas dinámicas por sección y SEO técnico avanzado. Arquitectura pensada para publicar decenas de notas al día.",
-    metric: "CMS propio + SEO técnico",
-    stack: ["Laravel", "Astro.js"],
-    accent: "#4ade80",
-  },
-  {
-    name: "Maskanieves",
-    kind: "Marca local · Cancún",
-    year: "2026",
-    img: "/img/projects/maskanieves.webp",
-    url: "https://maskanieves.com",
-    description:
-      "Sitio de identidad fuerte para heladería artesanal de Cancún. Catálogo de sabores por categoría, menú con precios y pedidos directos por WhatsApp para domicilio y eventos.",
-    metric: "Pedidos directos por WhatsApp",
-    stack: ["Astro.js", "Tailwind CSS", "TypeScript"],
-    accent: "#6ee7b7",
-  },
-];
-
-// ── Remaining work: compact grid, no screenshots ───────────────
-// Some are private internal systems; others are client-side sites
-// we no longer control. We don't fake previews for either.
-const moreProjects = [
-  {
-    name: "Dashboard Ohana",
-    description: "Panel operativo para empresa de transfers turísticos: asignación de choferes, monitoreo de rutas y gestión en tiempo real.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    url: "https://ohanatransfers.com",
-    note: null,
-    accent: "#6ee7b7",
-  },
-  {
-    name: "México Me Necesita",
-    description: "Plataforma institucional con autenticación, roles y permisos granulares para múltiples tipos de usuario.",
-    stack: ["PHP", "MySQL"],
-    url: "https://mmn.org.mx",
-    note: null,
-    accent: "#10b981",
-  },
-  {
-    name: "Cotizador de Crédito",
-    description: "Simulador financiero interactivo con cálculo de mensualidades en tiempo real y UX optimizada para conversión.",
-    stack: ["Astro.js", "React"],
-    url: "https://simulador-credito-ulises.netlify.app",
-    note: null,
-    accent: "#4ade80",
-  },
-  {
-    name: "Mujeres Rurales",
-    description: "Sistema de otorgamiento de créditos para el Gobierno de la Ciudad de México. Flujos de validación por etapas y roles granulares de acceso.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    url: null,
-    note: "Sistema interno de gobierno",
-    accent: "#a78bfa",
-  },
-  {
-    name: "Lomas Travel",
-    description: "Sistema web para agencia de viajes: gestión de reservas, catálogo de destinos y panel administrativo completo.",
-    stack: ["Laravel", "MySQL"],
-    url: "https://lomastravel.com",
-    note: "Operado por el cliente",
-    accent: "#fb923c",
-  },
-  {
-    name: "Azzure Condos",
-    description: "Landing page estática de alta performance para desarrollo inmobiliario de lujo en la Riviera Maya.",
-    stack: ["Astro.js"],
-    url: "https://azzurecondos.com",
-    note: "Operado por el cliente",
-    accent: "#84cc16",
-  },
-];
+// ── Projects live in src/data/projects.ts (shared with /proyectos) ──
+// `home` on each entry decides whether it lands in the cinema, the
+// compact grid, or only on the full portfolio page.
+type FeaturedProject = Project & { img: string; url: string; year: string; metric: string };
+const featured     = projects.filter(p => p.home === 'featured') as FeaturedProject[];
+const moreProjects = projects.filter(p => p.home === 'grid');
 
 // Names only — every one of these appears in the work above.
 const clients = [
@@ -824,7 +697,7 @@ const navItems = [
                   <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></span>
                   <span class="w-2.5 h-2.5 rounded-full bg-accent/50"></span>
                   <span class="ml-3 text-[10px] font-mono text-fg-muted truncate">
-                    {p.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                    {p.displayUrl ?? p.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                   </span>
                 </div>
                 <div class="relative aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-0 overflow-hidden">
@@ -945,6 +818,17 @@ const navItems = [
             </Tag>
           );
         })}
+      </div>
+      <div class="mt-10 flex justify-center">
+        <a href="/proyectos"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium text-fg transition-all duration-200 hover:bg-white/[0.05]"
+          style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09);">
+          Ver portafolio completo
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -1222,7 +1106,7 @@ const navItems = [
         <div>
           <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Empresa</div>
           <ul class="space-y-3">
-            {([["Proyectos", "#proyectos"], ["Proceso", "#proceso"], ["Preguntas", "#faq"], ["Contacto", "#contacto"]] as const).map(([label, href]) => (
+            {([["Proyectos", "/proyectos"], ["Proceso", "#proceso"], ["Preguntas", "#faq"], ["Contacto", "#contacto"]] as const).map(([label, href]) => (
               <li><a href={href} class="text-sm text-fg-muted hover:text-fg transition-colors">{label}</a></li>
             ))}
           </ul>

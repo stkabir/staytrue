@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "mcp__chrome-devtools__resize_page",
-      "mcp__chrome-devtools__take_snapshot"
+      "mcp__chrome-devtools__take_snapshot",
+      "PowerShell(& \"C:\\\\laragon\\\\www\\\\staytrue\\\\scratchpad\\\\test-heic-grid.ps1\")"
     ]
   }
 }
