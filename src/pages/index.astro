@@ -1106,7 +1106,7 @@ const navItems = [
         <div>
           <div class="text-[10px] font-mono text-accent tracking-widest uppercase mb-5">Empresa</div>
           <ul class="space-y-3">
-            {([["Proyectos", "/proyectos"], ["Proceso", "#proceso"], ["Preguntas", "#faq"], ["Contacto", "#contacto"]] as const).map(([label, href]) => (
+            {([["Proyectos", "/proyectos"], ["Proceso", "#proceso"], ["Preguntas", "#faq"], ["Contacto", "#contacto"], ["Aviso de privacidad", "/aviso-privacidad"]] as const).map(([label, href]) => (
               <li><a href={href} class="text-sm text-fg-muted hover:text-fg transition-colors">{label}</a></li>
             ))}
           </ul>
