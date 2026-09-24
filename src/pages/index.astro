@@ -42,6 +42,8 @@ const services = [
 // `home` on each entry decides whether it lands in the cinema, the
 // compact grid, or only on the full portfolio page.
 type FeaturedProject = Project & { img: string; url: string; year: string; metric: string };
+// Proyectos entregados: derivado del portafolio — sube solo al añadir a projects.ts.
+const projectCount = projects.length;
 const featured     = projects.filter(p => p.home === 'featured') as FeaturedProject[];
 const moreProjects = projects.filter(p => p.home === 'grid');
 
@@ -61,7 +63,7 @@ const clients = [
 
 const metrics = [
   { value: 7,  suffix: "+",  label: "Años construyendo software",     sub: "Desde 2018" },
-  { value: 12, suffix: "",   label: "Proyectos en producción",        sub: "No prototipos" },
+  { value: projectCount, suffix: "",   label: "Proyectos en producción",        sub: "No prototipos" },
   { value: 2,  suffix: "",   label: "Gobiernos como cliente",         sub: "Jalisco y CDMX" },
   { value: 3,  suffix: "",   label: "Plataformas que cubrimos",       sub: "Web, móvil y escritorio" },
 ];
@@ -454,7 +456,7 @@ const navItems = [
           <div class="flex gap-8 pt-4 border-t border-white/[0.07] hero-stats">
             {[
               { val: "+7",   label: "Años de experiencia", counter: 7  },
-              { val: "+12",  label: "Proyectos entregados", counter: 12 },
+              { val: `+${projectCount}`, label: "Proyectos entregados", counter: projectCount },
               { val: "MX",   label: "Empresa mexicana" },
             ].map(s => (
               <div>
