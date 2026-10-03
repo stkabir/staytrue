@@ -89,6 +89,19 @@ export const projects: Project[] = [
     home: 'featured',
   },
   {
+    name: "ISCYTEC",
+    kind: "Institución educativa",
+    year: "2026",
+    img: "/img/projects/iscytec.webp",
+    url: "https://iscytec.mx",
+    description:
+      "Sitio para instituto de preparatoria y licenciatura en línea en Mazatlán. Oferta académica por plan de estudios, información de becas e inscripciones, y solicitud de informes directa por formulario y WhatsApp.",
+    metric: "Bachillerato y licenciatura en línea",
+    stack: ["Astro.js", "TypeScript", "SEO"],
+    accent: "#fbbf24",
+    home: 'featured',
+  },
+  {
     name: "Brickell News",
     kind: "Portal editorial",
     year: "2024",
@@ -227,6 +240,8 @@ export const projects: Project[] = [
     accent: "#a78bfa",
     home: 'grid',
   },
+
+  // ── Only on /proyectos ──────────────────────────────────────
   {
     name: "Stay Color",
     kind: "Juego web",
@@ -236,10 +251,8 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Canvas"], // TODO: confirmar
     note: null,
     accent: "#facc15",
-    home: 'grid',
+    home: false,
   },
-
-  // ── Only on /proyectos ──────────────────────────────────────
   {
     name: "Maroma Beach",
     kind: "Club de playa",
