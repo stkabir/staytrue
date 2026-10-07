@@ -50,6 +50,19 @@ export type Project = {
 export const projects: Project[] = [
   // ── Home: cinema ────────────────────────────────────────────
   {
+    name: "Umbral Inmobiliaria",
+    kind: "Demo · Bienes raíces",
+    year: "2026",
+    img: "/img/projects/demo-inmobiliaria.webp",
+    url: "https://demo-inmobiliaria.staytruemx.com",
+    description:
+      "Plataforma demo para inmobiliaria con propiedades en cinco ciudades de México. Catálogo de casas, departamentos, terrenos y desarrollos con filtros por operación, tipo y ciudad, y Lía, asistente virtual que califica al cliente, agenda visitas y pasa la conversación a WhatsApp.",
+    metric: "Asistente virtual con pase a WhatsApp",
+    stack: ["Astro.js", "TypeScript", "IA"], // TODO: confirmar
+    accent: "#d6b98c",
+    home: 'featured',
+  },
+  {
     name: "Mezcal Tierra Mística",
     kind: "E-commerce artesanal",
     year: "2026",
@@ -76,19 +89,6 @@ export const projects: Project[] = [
     home: 'featured',
   },
   {
-    name: "Blasto",
-    kind: "Videojuego web",
-    year: "2026", // TODO: confirmar
-    img: "/img/projects/blasto.webp",
-    url: "https://blasto.pro",
-    description:
-      "Arcade de naves que se juega directo en el navegador. Power-ups, personalización de nave, tienda integrada, anuncios recompensados y marcador global de jugadores.",
-    metric: "Ranking global Top 100",
-    stack: ["TypeScript", "Canvas", "Node.js"], // TODO: confirmar
-    accent: "#22d3ee",
-    home: 'featured',
-  },
-  {
     name: "ISCYTEC",
     kind: "Institución educativa",
     year: "2026",
@@ -99,6 +99,19 @@ export const projects: Project[] = [
     metric: "Bachillerato y licenciatura en línea",
     stack: ["Astro.js", "TypeScript", "SEO"],
     accent: "#fbbf24",
+    home: 'featured',
+  },
+  {
+    name: "Blasto",
+    kind: "Videojuego web",
+    year: "2026", // TODO: confirmar
+    img: "/img/projects/blasto.webp",
+    url: "https://blasto.pro",
+    description:
+      "Arcade de naves que se juega directo en el navegador. Power-ups, personalización de nave, tienda integrada, anuncios recompensados y marcador global de jugadores.",
+    metric: "Ranking global Top 100",
+    stack: ["TypeScript", "Canvas", "Node.js"], // TODO: confirmar
+    accent: "#22d3ee",
     home: 'featured',
   },
   {
@@ -152,7 +165,7 @@ export const projects: Project[] = [
     metric: "Búsqueda de refacciones por vehículo",
     stack: ["Laravel", "MySQL", "E-commerce"], // TODO: confirmar
     accent: "#f87171",
-    home: 'featured',
+    home: false,
   },
   {
     name: "México Me Necesita",
