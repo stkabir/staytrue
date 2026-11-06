@@ -7,9 +7,8 @@
 //   false      → only listed on /proyectos
 //
 // /proyectos shows every project that has an `img` (screenshot + name
-// only), or `code` for private systems we can't screenshot: those get a
-// code-editor tile with a snippet in the project's stack — clearly a
-// reference, never passed off as the real product. Neither → not listed.
+// only). Only list work that is 100% Stay True's; no private/third-party
+// systems. No `img` → not listed.
 //
 // Every `metric` is a verifiable fact about the build, not a claimed
 // business outcome we can't back up.
@@ -34,9 +33,8 @@ export type Project = {
   kind: string;
   year?: string;
   img?: string;
-  code?: { file: string; lines: string[] };
-  status?: string; // label on code tiles; defaults to "Sistema interno"
   url: string | null;
+  store?: string; // Google Play link, shown as a badge on the home cinema card
   displayUrl?: string; // host shown in the browser-chrome bar when it differs from `url`
   description: string;
   metric?: string;
@@ -60,6 +58,19 @@ export const projects: Project[] = [
     metric: "Asistente virtual con pase a WhatsApp",
     stack: ["Astro.js", "TypeScript", "IA"], // TODO: confirmar
     accent: "#d6b98c",
+    home: 'featured',
+  },
+  {
+    name: "Notame",
+    kind: "App de escritorio · Windows",
+    year: "2026",
+    img: "/img/projects/notame.webp",
+    url: "https://notame.staytruemx.com",
+    description:
+      "App de notas adhesivas que flotan sobre cualquier ventana. Varias notas con listas de tareas, modo libreta, modo fantasma semitransparente, anclaje a bordes, envío cifrado entre PCs y guardado automático, todo local y sin cuenta.",
+    metric: "Instalador para Windows 10/11",
+    stack: ["Tauri", "Rust", "TypeScript"], // TODO: confirmar
+    accent: "#facc15",
     home: 'featured',
   },
   {
@@ -103,15 +114,42 @@ export const projects: Project[] = [
   },
   {
     name: "Blasto",
-    kind: "Videojuego web",
+    kind: "Videojuego · Web y Android",
     year: "2026", // TODO: confirmar
     img: "/img/projects/blasto.webp",
     url: "https://blasto.pro",
+    store: "https://play.google.com/store/apps/details?id=pro.blasto.game&pcampaignid=web_share",
     description:
-      "Arcade de naves que se juega directo en el navegador. Power-ups, personalización de nave, tienda integrada, anuncios recompensados y marcador global de jugadores.",
-    metric: "Ranking global Top 100",
+      "Arcade de naves que se juega en el navegador y ya está publicado como app en Google Play. Power-ups, personalización de nave, tienda integrada, anuncios recompensados y marcador global de jugadores.",
+    metric: "Publicado en Google Play · Ranking Top 100",
     stack: ["TypeScript", "Canvas", "Node.js"], // TODO: confirmar
     accent: "#22d3ee",
+    home: 'featured',
+  },
+  {
+    name: "Grupo Maxxum",
+    kind: "Construcción y bienes raíces",
+    year: "2026",
+    img: "/img/projects/maxxum.webp",
+    url: "https://maxxum.staytruemx.com",
+    description:
+      "Sitio para grupo de Querétaro con dos divisiones: Maxxum Construcciones (obra, remodelación, impermeabilización y pintura) y Maxxum Real Estate (venta, renta y desarrollos). Cotización de proyectos, propiedades, contacto por WhatsApp y Lía, asistente virtual que orienta al visitante.",
+    metric: "Dos divisiones, un solo sitio",
+    stack: ["Astro.js", "TypeScript", "IA"], // TODO: confirmar
+    accent: "#e11d48",
+    home: 'featured',
+  },
+  {
+    name: "Catálogo Digital",
+    kind: "Catálogo de servicios · Abogados",
+    year: "2026",
+    img: "/img/projects/catalogo-digital.webp",
+    url: "https://catalogo-digital.staytruemx.com",
+    description:
+      "Catálogo digital de servicios pensado para despachos de abogados: consultas, divorcios, testamentos, constitución de empresas y más, con perfiles del equipo, testimonios, preguntas frecuentes y solicitud de consulta por WhatsApp. El concepto se adapta a cualquier giro que venda servicios.",
+    metric: "Adaptable a cualquier giro",
+    stack: ["Astro.js", "TypeScript", "Tailwind CSS"], // TODO: confirmar
+    accent: "#c9a45c",
     home: 'featured',
   },
   {
@@ -141,46 +179,6 @@ export const projects: Project[] = [
     home: 'featured',
   },
   {
-    name: "Lomas Travel",
-    kind: "Agencia de viajes",
-    year: "2022", // TODO: confirmar
-    img: "/img/projects/lomas-travel.webp",
-    url: "https://lomastravel.com/es",
-    description:
-      "Sistema web para agencia de viajes: reservas de hoteles, traslados y experiencias, catálogo de destinos y panel administrativo completo.",
-    metric: "Reservas de hoteles, traslados y tours",
-    stack: ["Laravel", "MySQL"],
-    note: "Operado por el cliente",
-    accent: "#fb923c",
-    home: 'featured',
-  },
-  {
-    name: "Ancona Autopartes",
-    kind: "E-commerce automotriz",
-    year: "2026", // TODO: confirmar
-    img: "/img/projects/ancona-autopartes.webp",
-    url: "https://www.anconaautopartes.com",
-    description:
-      "Tienda en línea de la refaccionaria del sureste. Catálogo por categoría, búsqueda por marca, modelo y año del vehículo, cuentas de cliente, lista de deseos y pagos con tarjeta y Mercado Pago.",
-    metric: "Búsqueda de refacciones por vehículo",
-    stack: ["Laravel", "MySQL", "E-commerce"], // TODO: confirmar
-    accent: "#f87171",
-    home: false,
-  },
-  {
-    name: "México Me Necesita",
-    kind: "Plataforma institucional",
-    year: "2023", // TODO: confirmar
-    img: "/img/projects/mexico-me-necesita.webp",
-    url: "https://mmn.org.mx",
-    description:
-      "Plataforma institucional con autenticación, roles y permisos granulares para múltiples tipos de usuario.",
-    metric: "Roles y permisos granulares",
-    stack: ["PHP", "MySQL"],
-    accent: "#10b981",
-    home: 'featured',
-  },
-  {
     name: "Maskanieves",
     kind: "Marca local · Cancún",
     year: "2026",
@@ -196,30 +194,6 @@ export const projects: Project[] = [
 
   // ── Home: compact grid ──────────────────────────────────────
   {
-    name: "Agua Coecytjal",
-    kind: "Gobierno de Jalisco",
-    year: "2023",
-    img: "/img/projects/coecytjal.webp",
-    url: "https://l.coecytjal.org.mx",
-    description:
-      "Sistema estatal de monitoreo de calidad del agua. Captura de muestreos, estadísticas comparativas entre periodos y generación de reportes para toma de decisiones públicas.",
-    metric: "+50 cuerpos de agua monitoreados",
-    stack: ["Laravel", "PHP", "MySQL"],
-    accent: "#38bdf8",
-    home: 'grid',
-  },
-  {
-    name: "Dashboard Ohana",
-    kind: "Transporte turístico",
-    img: "/img/projects/ohana.webp",
-    url: "https://ohanatransfers.com",
-    description: "Panel operativo para empresa de transfers turísticos: asignación de choferes, monitoreo de rutas y gestión en tiempo real.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    note: null,
-    accent: "#6ee7b7",
-    home: 'grid',
-  },
-  {
     name: "Creditaria",
     kind: "Herramienta financiera",
     img: "/img/projects/cotizador-credito.webp",
@@ -231,29 +205,6 @@ export const projects: Project[] = [
     accent: "#4ade80",
     home: 'grid',
   },
-  {
-    name: "Mujeres Rurales",
-    kind: "Gobierno de CDMX",
-    code: {
-      file: "routes/web.php",
-      lines: [
-        "Route::middleware(['auth', 'role:validador'])",
-        "    ->prefix('solicitudes')",
-        "    ->group(function () {",
-        "        Route::get('/', ListaSolicitudes::class);",
-        "        Route::post('{solicitud}/etapa',",
-        "            [ValidacionController::class, 'avanzar']);",
-        "    });",
-      ],
-    },
-    url: null,
-    description: "Sistema de otorgamiento de créditos para el Gobierno de la Ciudad de México. Flujos de validación por etapas y roles granulares de acceso.",
-    stack: ["Laravel", "Livewire", "MySQL"],
-    note: "Sistema interno de gobierno",
-    accent: "#a78bfa",
-    home: 'grid',
-  },
-
   // ── Only on /proyectos ──────────────────────────────────────
   {
     name: "Stay Color",
@@ -264,112 +215,6 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Canvas"], // TODO: confirmar
     note: null,
     accent: "#facc15",
-    home: false,
-  },
-  {
-    name: "Maroma Beach",
-    kind: "Club de playa",
-    year: "2021",
-    img: "/img/projects/maroma-beach.webp",
-    url: "https://maromabeach.com/es/",
-    description:
-      "Sitio multiidioma para club de playa en la Riviera Maya. Buscador de disponibilidad con fechas y ocupantes, catálogo de experiencias y galería multimedia optimizada.",
-    metric: "Reservas con buscador en vivo",
-    stack: ["React", "Laravel"],
-    accent: "#10b981",
-    home: false,
-  },
-
-  // ── Only on /proyectos · private systems (code tile) ────────
-  // Clients stay anonymous here — described by industry only.
-  {
-    name: "Plataforma multi-rol",
-    kind: "Operadora turística",
-    code: {
-      file: "app/Enums/Rol.php",
-      lines: [
-        "enum Rol: string {",
-        "    case Dueno       = 'dueno';",
-        "    case Direccion   = 'direccion';",
-        "    case Contador    = 'contador';",
-        "    case Diseno      = 'diseno';",
-        "    case Marketing   = 'marketing';",
-        "    case CallCenter  = 'call_center';",
-        "    case Aeropuerto  = 'vendedor_aeropuerto';",
-        "}",
-      ],
-    },
-    url: null,
-    description: "Dashboards de usuarios y administradores para todos los niveles de una operadora turística: dueño, dirección, contabilidad, diseño, marketing, call center y vendedores en aeropuertos, cada uno con su panel y permisos.",
-    stack: ["Laravel", "Livewire", "MySQL"], // TODO: confirmar
-    accent: "#38bdf8",
-    home: false,
-  },
-  {
-    name: "Apps de escritorio Ancona",
-    kind: "Logística y almacén · Ancona Autopartes",
-    code: {
-      file: "src/apps.config.ts",
-      lines: [
-        "export const apps = {",
-        "  logistica:   { rutas: true,  inventario: true },",
-        "  repartidores:{ entregas: true, firma: true },",
-        "  almacen:     { surtido: true, escaneo: true },",
-        "} satisfies Record<Area, Permisos>;",
-        "",
-        "createDesktopApp(apps[area]);",
-      ],
-    },
-    url: null,
-    description: "Suite de aplicaciones de escritorio para las áreas operativas de Ancona Autopartes: logística, repartidores y almacén, cada una con sus flujos y permisos.",
-    stack: ["Electron", "TypeScript"], // TODO: confirmar
-    accent: "#f87171",
-    home: false,
-  },
-  {
-    name: "CRM de clientes",
-    kind: "Distribuidora de impresión industrial",
-    code: {
-      file: "app/Models/Cliente.php",
-      lines: [
-        "class Cliente extends Model {",
-        "    public function equipos() {",
-        "        return $this->hasMany(Equipo::class);",
-        "    }",
-        "    public function scopePolizaPorVencer($q) {",
-        "        return $q->whereHas('contratos',",
-        "            fn ($c) => $c->vencenEn(30));",
-        "    }",
-        "}",
-      ],
-    },
-    url: null,
-    description: "Dashboard administrativo para manejo de clientes de una distribuidora de impresoras industriales: equipos instalados, contratos de servicio y seguimiento comercial.",
-    stack: ["Laravel", "MySQL"], // TODO: confirmar
-    accent: "#e879f9",
-    home: false,
-  },
-  {
-    name: "Dexabyte",
-    kind: "Sitio corporativo · Tecnología",
-    code: {
-      file: "src/pages/index.astro",
-      lines: [
-        "---",
-        "import Layout from '../layouts/Base.astro';",
-        "const servicios = await getCollection('servicios');",
-        "---",
-        "<Layout title=\"Dexabyte\">",
-        "  <Hero />",
-        "  <Servicios items={servicios} />",
-        "</Layout>",
-      ],
-    },
-    status: "Sitio fuera de línea",
-    url: null,
-    description: "Sitio corporativo para empresa de tecnología: presentación de servicios, casos y contacto.",
-    stack: ["Astro.js"], // TODO: confirmar
-    accent: "#818cf8",
     home: false,
   },
 ];

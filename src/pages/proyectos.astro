@@ -3,23 +3,12 @@ import '../styles/global.css';
 import { projects, WHATSAPP, EMAIL } from '../data/projects';
 
 // Full portfolio — the link we send straight to prospective clients.
-// Two blocks: live sites with a screenshot (the visual grid), then
-// private / offline work shown as compact code tiles.
-const shots    = projects.filter(p => p.img);
-const internal = projects.filter(p => !p.img && p.code);
-const portfolio = [...shots, ...internal];
+const shots = projects.filter(p => p.img);
+const portfolio = shots;
 
 // Name → words → letters, so each letter can flip in on its own while
 // words still wrap as units on narrow cards.
 const words = (name: string) => name.split(' ').map(w => w.split(''));
-
-// Minimal highlighting for code tiles — no library, just enough colour
-// to read as an editor: strings, keywords/framework names, arrows.
-const tokenRe = /('[^']*'|"[^"]*"|::class|->|=>|\b(?:Route|enum|case|class|public|function|return|export|const|import|await|satisfies|extends|fn)\b)/;
-const tokenCls = (t: string) =>
-  /^['"]/.test(t) ? 'tok-str' : t === '->' || t === '=>' ? 'tok-dim' : 'tok-kw';
-const highlight = (line: string) =>
-  line.split(tokenRe).filter(Boolean).map(t => ({ t, cls: tokenRe.test(t) ? tokenCls(t) : '' }));
 
 // Split per letter for the entrance wave; spaces stay as nbsp so the
 // inline-block spans don't collapse them.
@@ -53,8 +42,6 @@ const URL   = "https://staytruemx.com/proyectos";
   </script>
   <style is:inline>
     .pf-anim .pf-char, .pf-anim .pf-sub, .pf-anim .pf-card { opacity: 0; }
-    .tok-kw  { color: #6ee7b7; }
-    .tok-dim { color: rgba(232,239,233,0.4); }
     /* Name reveal starts hidden; GSAP plays it on hover / centre-scroll.
        Reduced motion never gets `pf-anim`, so names stay visible. */
     .pf-anim .pf-letter, .pf-anim .pf-arrow, .pf-anim .pf-dim { opacity: 0; }
@@ -240,69 +227,6 @@ const URL   = "https://staytruemx.com/proyectos";
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SISTEMAS INTERNOS — privados / fuera de línea (tarjeta de código)
-  ══════════════════════════════════════ -->
-  {internal.length > 0 && (
-    <section class="relative pb-24 lg:pb-32" aria-labelledby="internos">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="mb-8">
-          <h2 id="internos" class="text-xs font-mono tracking-[0.3em] uppercase text-accent">Sistemas internos</h2>
-          <p class="mt-2 text-sm text-fg-muted">
-            Plataformas privadas y sitios que ya no están en línea. El código es ilustrativo.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {internal.map(p => (
-            <article
-              class="pf-card group card-spotlight rounded-2xl overflow-hidden flex flex-col transition-[translate,box-shadow] duration-300 hover:-translate-y-1"
-              style="background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.012) 100%);
-                     border: 1px solid rgba(255,255,255,0.07);
-                     box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);"
-            >
-              <div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.06]" style="background: #0a0f0c;">
-                <span class="w-2 h-2 rounded-full bg-red-400/50"></span>
-                <span class="w-2 h-2 rounded-full bg-yellow-400/50"></span>
-                <span class="w-2 h-2 rounded-full bg-accent/50"></span>
-                <span class="ml-3 text-[10px] font-mono text-fg-muted truncate">{p.code!.file}</span>
-              </div>
-              <div class="relative aspect-[4/3] overflow-hidden">
-                <div class="pf-shot w-full h-full px-4 pt-11 pb-4 overflow-hidden"
-                  style={`background: radial-gradient(120% 90% at 100% 0%, ${p.accent}24 0%, transparent 60%), #0a0f0c;`}
-                  role="img" aria-label={`Fragmento de código ilustrativo — ${p.name}`}>
-                  <pre class="font-mono text-[10px] leading-relaxed whitespace-pre text-fg/85" aria-hidden="true">{
-                    p.code!.lines.map((line, n) => (
-                      <div><span class="inline-block w-5 select-none text-fg-muted/40">{n + 1}</span>{
-                        highlight(line).map(s => s.cls
-                          ? <span class={s.cls} style={s.cls === 'tok-str' ? `color: ${p.accent};` : undefined}>{s.t}</span>
-                          : s.t)
-                      }</div>
-                    ))
-                  }</pre>
-                </div>
-                <div class="absolute inset-x-0 bottom-0 h-12 pointer-events-none"
-                  style="background: linear-gradient(180deg, transparent, #0a0f0c);"></div>
-                <span class="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-mono text-fg-muted backdrop-blur"
-                  style="border: 1px solid rgba(255,255,255,0.08); background: rgba(3,7,4,0.6);">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  {p.status ?? 'Sistema interno'}
-                </span>
-              </div>
-              <div class="px-4 py-3 border-t border-white/[0.06] flex items-center gap-2.5">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${p.accent};`}></span>
-                <div class="min-w-0">
-                  <h3 class="text-sm font-semibold text-fg leading-tight truncate">{p.name}</h3>
-                  <p class="text-[11px] font-mono text-fg-muted truncate">{p.kind}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- ══════════════════════════════════════
        CTA
